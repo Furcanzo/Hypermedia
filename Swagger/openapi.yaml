@@ -1,0 +1,523 @@
+openapi: 3.0.0
+servers: 
+  - description: SwaggerHub API auto Mocking
+    url: http://none.yet.io
+info:
+  version: "1.0.0"
+  title: 'Hypepperony Api'
+  description: 'An Api that allows users to see books/events or to log in and buy books'
+  license:
+    name: Apache-2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  
+tags:
+  - name: artistic event
+    description: Artistic events available
+  - name: user
+    description: Operations about user
+  - name: performer
+    description: Performer or company
+  - name: seminar
+    description: seminars of artistic events
+
+paths: 
+  /artistic_event/{title}:
+    get: 
+      tags:
+        - artistic event
+      summary: Find a single artistic event by title
+      operationId: getArtisticEventByTitle
+      parameters:
+        - name: title
+          in: path
+          required: true
+          schema:
+            type: string
+            example: Mostra Leonardo
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artistic_event'
+        '400':
+          description: Invalid Artistic event title
+        '404':
+          description: Title not found
+    post:
+      tags:
+        - artistic event
+      summary: Updates an artistic event by title
+      operationId: updateEventByTitle
+      parameters:
+        - name: title
+          in: path
+          description: title of artistic event that needs to be updated
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid artistic event title
+        '404':
+          description: Title not found
+        '405':
+          description: Invalid input
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title:
+                  description: Updated title of the artistic event
+                  type: string
+                  
+  /artistic_event/{type}:
+    get: 
+      tags:
+        - artistic event
+      summary: Returns multiple artistic events by type
+      operationId: getArtisticEventByType
+      parameters:
+        - name: Limit
+          in: query
+          description: maximum number of artistic events returned
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10
+            example: 7
+            
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+            example: Opera
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Artistic_event'
+        '400':
+          description: Invalid type
+        '404':
+          description: type not found
+    post:
+      tags:
+        - artistic event
+      summary: Updates an artistic event by type
+      operationId: updateEventByType
+      parameters:
+        - name: type
+          in: path
+          description: type of artistic event that needs to be updated
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid evnt type
+        '404':
+          description: type not found
+        '405':
+          description: Invalid input
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title:
+                  description: Updated title of the book
+                  type: string
+                  
+  /artistic_event/findByData/{data}:
+    get: 
+      tags: 
+      - artistic event
+      description: Returns multiple book
+      operationId: getEventByData
+      parameters:
+        - name: Limit
+          in: query
+          description: maximum number of books returned
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10
+            example: 7
+            
+        - name: data
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 05/05/2019
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                   - $ref: '#/components/schemas/Artistic_event'
+                   - $ref: '#/components/schemas/Seminar'
+        '400':
+          description: Invalid data
+        '404':
+          description: data not found
+          
+  /user:
+    post:
+      tags: 
+      - user
+      summary: Create user
+      description: To create a user account.
+      operationId: createUser
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Created user object
+        required: true
+  /user/login:
+    get:
+      tags:
+        - user
+      summary: Logs user into the system
+      operationId: loginUser
+      parameters:
+        - name: username
+          in: query
+          description: The user name for login
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: The password for login in clear text
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid username/password supplied
+  /user/logout:
+    get:
+      tags:
+        - user
+      summary: Logs out current logged in user session
+      operationId: logoutUser
+      responses:
+        default:
+          description: successful operation
+  '/user/{username}':
+    get:
+      tags:
+        - user
+      summary: Get user by user name
+      operationId: getUserByName
+      parameters:
+        - name: username
+          in: path
+          description: The name that needs to be fetched.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+    put:
+      tags:
+        - user
+      summary: Updated user
+      description: This can only be done by the logged in user.
+      operationId: updateUser
+      parameters:
+        - name: username
+          in: path
+          description: name that need to be updated
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid user supplied
+        '404':
+          description: User not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Updated user object
+        required: true
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      parameters:
+        - name: username
+          in: path
+          description: The name that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+          
+  /performers:
+    get: 
+      tags: 
+      - performer
+      description: Returns all the performers
+      operationId: getAllPerformers
+      parameters:
+        - name: Limit
+          in: query
+          description: maximum number of performers returned
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10
+            example: 7
+            
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Performer'
+                  
+  /seminaries:
+    get: 
+      tags: 
+      - seminar
+      description: Returns all the seminaries
+      operationId: getAllSeminaries
+      parameters:
+        - name: Limit
+          in: query
+          description: maximum number of seminaries returned
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10
+            example: 7
+            
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Seminar'
+                  
+  /artistic_events:
+    get: 
+      tags: 
+      - artistic event
+      description: Returns all the artistic events
+      operationId: getAllArtisticEvents
+      parameters:
+        - name: Limit
+          in: query
+          description: maximum number of artistic evrnts returned
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10
+            example: 7
+            
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Artistic_event'
+  
+components:
+  schemas:
+    Artistic_event:
+      title: Artistic_event
+      description: An artistic event in this festival
+      type: object
+      required:
+        - title
+        - performer
+      properties:
+        title:
+          type: string
+          example: Romeo and Juliet
+        date:
+          type: string
+          example: 4th May 2019
+        abstract:
+          type: string
+          example: The tragic story of two lovers
+        performer:
+          $ref: '#/components/schemas/Performer'
+        seminar:
+          $ref: '#/components/schemas/Seminar'
+        Photo gallery:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                example: www.mangiami.org
+        available:
+          type: string
+          description: event availability
+          enum:
+            - available
+            - out of stock
+        type:
+          type: string
+          description: the typology of the event
+          enum:
+            - Music
+            - Theater
+            - Opera
+            - Dance performances
+            
+    Performer:
+      oneOf:
+        - $ref: '#/components/schemas/Artist'
+        - $ref: '#/components/schemas/Company'
+      title: Performer
+      description: An artist or a company
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: Bolle
+        Photo gallery:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                example: www.mangiami.org
+        Details:
+          type: string
+          example: A great dancer
+        artistic event:
+          type: array
+          items:
+            $ref: '#/components/schemas/Artistic_event'
+            
+    Artist:
+      title: Artist
+      description: a single artist
+      type: object
+      required:
+        - name
+      properties:
+        current_affiliation:
+          $ref: '#/components/schemas/Artistic_event'
+        main_achievements:
+          type: string
+          example: Winner of Something and Something Else festivals
+          
+    Company:
+      title: Company
+      description: an artistic company
+      type: object
+      required:
+        - name
+      properties:
+        company_members:
+          type: array
+          items:
+            $ref: '#/components/schemas/Artist'
+            
+    Seminar:
+      title: Seminar
+      description: a seminar on an artistic event
+      type: object
+      required:
+        - title
+        - data
+        - location
+      properties:
+        title:
+          type: string
+          example: the theme of love
+        data:
+          type: object
+          properties:
+            day:
+              type: integer
+            mounth:
+              type: integer
+            year:
+              type: integer
+          example: 5 5 2018
+        location:
+          type: string
+          example: hall 2
+
+    User:
+      title: User
+      description: A user of the website
+      type: object
+      required:
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Pippo
+        password:
+          type: string
+
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
