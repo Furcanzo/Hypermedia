@@ -5,7 +5,7 @@ servers:
 info:
   version: "1.0.0"
   title: 'Hypepperony Api'
-  description: 'An Api that allows users to see books/events or to log in and buy books'
+  description: 'An Api for an artistic festival'
   license:
     name: Apache-2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
