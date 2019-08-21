@@ -1,0 +1,36 @@
+.image_part{
+	width: 20%;
+	height: 25em;
+	float:left;
+	margin-top: 6em;
+	margin-left: 6em;
+}
+.book_image{
+	width: 100%;
+}
+.book_info{
+	width: 60%;
+	float: left;
+	margin-top: 6em;
+	margin-left: 6em;
+	text-align: center;
+}
+#title{
+	color:#75151e;
+}
+#author{
+	color:#75151e;
+}
+.order_part{
+	margin-top:5em;
+}
+#price{
+	width: 50%;
+	float:left;
+	font-size: 200%;
+	color;
+}
+#cart_button{
+	width: 50%;
+	float: left;
+}
