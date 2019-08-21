@@ -1,0 +1,123 @@
+body{
+	background-color: #a5eaff;
+}
+#page{
+	background-image: url("D:/Università/Hypermedia Applications/Progetto/public/assets/img/background.jpg"); 
+	background-repeat: no-repeat;
+	margin-left:5%;
+	margin-right:5%;
+	width: 90%;
+	height: 100%;
+	margin-top: 0;
+	margin-bottom: 5%;
+	box-shadow: 0.2em 0.2em 1.2em 0.5em #888888;
+	float: left;
+	z-index: 1;
+}
+
+
+/*nav*/
+.navbar{
+	position: absolute;
+	top:0;
+	width: 90%;
+	margin-left:5%;
+	margin-right:5%; 
+	float: left;
+	opacity: 1;
+	overflow: hidden;
+	z-index: 2;
+}
+.bg-dark{
+	background-color: transparent!important;
+}
+.nav-link{
+	color:black!important;
+	font-weight:bold;
+	opacity: 0.8!important;
+}
+.nav-current{
+	opacity: 1!important;
+	color: #75151e!important;
+}
+.nav-link:hover{
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg id='squiggle-link' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' viewBox='0 0 20 4'%3E%3Cstyle type='text/css'%3E.squiggle{animation:shift .3s linear infinite;}@keyframes shift {from {transform:translateX(0);}to {transform:translateX(-20px);}}%3C/style%3E%3Cpath fill='none' stroke='%23453886' stroke-width='2' class='squiggle' d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3'/%3E%3C/svg%3E");
+  background-position: bottom;
+  background-repeat: repeat-x;
+  background-size: 1.6em;
+  border-bottom: 0;
+  padding-bottom: .3em;
+  text-decoration: none;
+}
+.pull-right li a{
+	padding-right: 3em;
+	padding-left:0;
+	color: #ffd700;
+	font-style: italic;
+	opacity:0.8;
+}
+.pull-right li a:hover{
+	text-decoration: none;
+	opacity: 1;
+}
+.shopping_cart{
+	font-size: 150%;
+	opacity: 0.8;
+}
+.shopping_cart:hover{
+	opacity: 1;
+}
+.fa{
+	color:#ffd700;
+}
+/*end_nav*/
+
+
+footer{
+	width: 100%;
+	padding-left: 2%;
+	padding-bottom: 2%;
+	padding-right: 2%;
+	float: left;
+}
+.footer_license{
+	width: 65%;
+	float:left;
+}
+.footer_license_text{
+	font-size: 1vw;
+	color: black;
+}
+.footer_info{
+	width: 35%;
+	float:left;
+	text-align: right;
+}
+.footer_info_link{
+	color:black;
+	float: left;
+	font-size: 1vw;
+}
+.footer_separator{
+	margin-left: 2em;
+	margin-right: 2em;
+	float: left;
+	font-size: 1vw;
+}
+
+@media (max-width: 768px) {
+	.footer_license{
+		width: 100%;
+		float:left;
+		text-align: center;
+	}	
+	.footer_license_text{
+		font-size: 2vw;
+	}
+	.footer_info_link{
+		font-size: 0;
+	}
+	.footer_separator{
+		font-size: 0;
+	}
+}
