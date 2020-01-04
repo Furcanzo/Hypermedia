@@ -25,6 +25,7 @@ app.use((req, res, next)=>{
 		res.header('Access-Control-Allow-Methods', 'POST, GET, DELETE');
 		return res.status(200).json({});
 	}
+	next();
 });
 
 //list of entities
