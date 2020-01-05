@@ -69,7 +69,7 @@ exports.artisticEventGetCalendar =  (req, res, next)=>{
 							day: row.date,
 							request: {
 								type: 'GET',
-								url: row.date!=null? 'http://localhost:3000/artisticEvent/day/' + row.date : null//indirizzo hardcoddato!!!! //TODO cambiare, day ha ' '
+								url: row.date!=null? 'http://localhost:3000/artisticEvent/day/' + row.date : null//indirizzo hardcoddato!!!!
 							}
 						}
 					}),
@@ -79,7 +79,7 @@ exports.artisticEventGetCalendar =  (req, res, next)=>{
 							date: row.date,
 							request: {
 								type: 'GET',
-								url: row.date!=null? 'http://localhost:3000/seminar/day/' + row.date : null//indirizzo hardcoddato!!!! //TODO cambiare, day ha ' '
+								url: row.date!=null? 'http://localhost:3000/seminar/day/' + row.date : null//indirizzo hardcoddato!!!!
 							}
 						}
 					})
