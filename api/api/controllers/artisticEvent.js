@@ -12,30 +12,49 @@ exports.artisticEventGetAll = (req, res, next)=>{
 			error.status = 500;
 			return next(error);
 		}
-		client.query('SELECT name, day::text,id FROM artistic_events ORDER BY day', (err, result)=>{
+		client.query('SELECT name, day::text,id FROM artistic_events ORDER BY day', (err, resultAE)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
 				return next(error);
 			}
-			
-			const response = {
-				count: result.rows.length,
-				artistic_events: result.rows.map(row =>{
-					return {
-						name: row.name,
-						day: row.day,
-						id: row.id,
-						request: {
-							type: 'GET',
-							url: 'http://localhost:3000/artisticEvent/'+row.id //indirizzo hardcoddato!!!!
+
+			client.query('SELECT distinct(s.id), s.day::text, s.title FROM artistic_events a JOIN seminars s ON a.seminar_id = s.id  ORDER BY day', (err, resultS)=> {
+				if (err) {
+					const error = new Error('Query error');
+					error.status = 500;
+					return next(error);
+				}
+
+				const response = {
+					countAE: resultAE.rows.length,
+					artistic_events: resultAE.rows.map(row => {
+						return {
+							name: row.name,
+							day: row.day,
+							id: row.id,
+							request: {
+								type: 'GET',
+								url: 'http://localhost:3000/artisticEvent/' + row.id //indirizzo hardcoddato!!!!
+							}
 						}
-					}
-				})
+					}),
+					countS: resultS.rows.length,
+					seminars: resultS.rows.map(row =>{
+						return {
+							title: row.title,
+							day: row.day,
+							id: row.id,
+							request: {
+								type: 'GET',
+								url: 'http://localhost:3000/seminar/'+row.id //indirizzo hardcoddato!!!!
+							}
+						}
+					})
 
-			};
-
-			res.status(200).json(response);
+				};
+				res.status(200).json(response);
+			});
 		});
 	});
 };
