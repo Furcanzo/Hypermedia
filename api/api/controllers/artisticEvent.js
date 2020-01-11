@@ -128,7 +128,11 @@ exports.artisticEventGetByID = (req, res, next)=>{
 				error.status = 500;
 				return next(error);
 			}
-			client.query('SELECT * FROM played WHERE events_id =' + id, (err, resultP)=>{
+			client.query('SELECT P.events_id, A.name AS artist_name, A.id AS artist_id, C.name AS companies_name, C.id AS companies_id\n' +
+				'FROM played P \n' +
+				'LEFT OUTER JOIN artists A ON P.artists_id = A.id \n' +
+				'LEFT OUTER JOIN companies C ON P.companies_id = C.id \n' +
+				'WHERE P.events_id =' + id, (err, resultP)=>{
 				if (err){
 					const error = new Error('Query error');
 					error.status = 500;
@@ -151,7 +155,7 @@ exports.artisticEventGetByID = (req, res, next)=>{
 					}),
 					performerLink: resultP.rows.map(row =>{
 						return {
-
+							name: row.artist_name!=null? row.artist_name : row.companies_name,
 							request: {
 								type: 'GET',
 								url: row.artists_id ===null? 'http://localhost:3000/company/'+row.companies_id : 'http://localhost:3000/artist/'+row.artists_id //indirizzo hardcoddato!!!!
