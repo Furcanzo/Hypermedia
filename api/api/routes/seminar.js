@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const seminarController = require('../controllers/seminar');
+const adminAuthCheck = require('../middleware/admin_check-auth');
 
 //list of routes for artist
 router.get('/:seminarId', seminarController.seminarGetByID );

@@ -109,3 +109,68 @@ exports.userLogin = (req, res, next)=>{
 
 	});
 };
+
+exports.userCreateAdmin = (req, res, next)=>{
+	const client = new Client({
+		connectionString: connect.connectString
+	});
+	client.connect((err, client, done)=>{
+		if (err){
+			const error = new Error('Cannot connect to DataBase');
+			error.status = 500;
+			return next(error);
+		}
+		bcrypt.hash(req.body.password, 10, (err, hash)=>{
+			if (err){
+				const error = new Error('Hashing error');
+				error.status = 500;
+				return next(error);
+			}else {
+				client.query('INSERT INTO users_web (email, password, admin)' +
+					'VALUES(\''+req.body.eMail+'\',\'' + hash +'\',\''+true+'\')', (err, result)=>{
+					if (err){
+						const error = new Error('Email already registered');
+						error.status = 401;
+						return next(error);
+					}
+					res.status(201).json({
+						message: 'admin added'
+					});
+				});
+			}
+		});
+
+	});
+};
+
+exports.userChangePassword = (req, res, next)=>{
+	const client = new Client({
+		connectionString: connect.connectString
+	});
+	client.connect((err, client, done)=>{
+		if (err){
+			const error = new Error('Cannot connect to DataBase');
+			error.status = 500;
+			return next(error);
+		}
+		bcrypt.hash(req.body.password, 10, (err, hash)=>{
+			if (err){
+				const error = new Error('Hashing error');
+				error.status = 500;
+				return next(error);
+			}else {
+				client.query('UPDATE users_web SET password = \''+hash+'\' WHERE id = '+req.userData.id, (err, result)=>{
+					if (err){
+						const error = new Error('Query error');
+						error.status = 500;
+						return next(error);
+					}
+					res.status(201).json({
+						message: 'Password changed'
+					});
+				});
+			}
+		});
+
+	});
+};

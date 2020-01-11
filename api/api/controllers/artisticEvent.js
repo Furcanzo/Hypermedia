@@ -134,6 +134,7 @@ exports.artisticEventGetByID = (req, res, next)=>{
 					error.status = 500;
 					return next(error);
 				}
+
 				const response = {
 					artistic_events: result.rows.map(row =>{
 						return {
@@ -150,9 +151,10 @@ exports.artisticEventGetByID = (req, res, next)=>{
 					}),
 					performerLink: resultP.rows.map(row =>{
 						return {
+
 							request: {
 								type: 'GET',
-								url: row.artistsId ===null? 'http://localhost:3000/company/'+row.companies_id : 'http://localhost:3000/artist/'+row.artists_id //indirizzo hardcoddato!!!!
+								url: row.artists_id ===null? 'http://localhost:3000/company/'+row.companies_id : 'http://localhost:3000/artist/'+row.artists_id //indirizzo hardcoddato!!!!
 							}
 						}
 					}) 
