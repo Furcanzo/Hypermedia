@@ -18,7 +18,7 @@ exports.seminarGetByID = (req, res, next)=>{
 				error.status = 500;
 				return next(error);
 			}
-			client.query('SELECT id FROM artistic_events WHERE seminar_id = ' + id, (err, resultA)=>{
+			client.query('SELECT id, name FROM artistic_events WHERE seminar_id = ' + id, (err, resultA)=>{
 				if (err){
 					const error = new Error('Query error');
 					error.status = 500;
@@ -35,6 +35,7 @@ exports.seminarGetByID = (req, res, next)=>{
 					}),
 					artisticEventLink: resultA.rows.map(row =>{
 						return {
+							name: row.name,
 							request: {
 								type: 'GET',
 								url: 'http://localhost:3000/artisticEvent/'+row.id //indirizzo hardcoddato!!!!
