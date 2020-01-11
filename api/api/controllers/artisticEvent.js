@@ -12,7 +12,7 @@ exports.artisticEventGetAll = (req, res, next)=>{
 			error.status = 500;
 			return next(error);
 		}
-		client.query('SELECT name, day::text,id FROM artistic_events ORDER BY day', (err, resultAE)=>{
+		client.query('SELECT name, day::text,id, type FROM artistic_events ORDER BY day', (err, resultAE)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
@@ -33,6 +33,7 @@ exports.artisticEventGetAll = (req, res, next)=>{
 							name: row.name,
 							day: row.day,
 							id: row.id,
+							type: row.type,
 							request: {
 								type: 'GET',
 								url: connect.root+'artisticEvent/' + row.id
