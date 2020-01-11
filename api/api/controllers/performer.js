@@ -31,7 +31,7 @@ exports.performerGetAll = (req, res, next)=>{
 							id: row.id,
 							request: {
 							type: 'GET',
-							url: 'http://localhost:3000/artist/'+row.id //indirizzo hardcoddato!!!!
+							url: connect.root + 'artist/'+row.id
 						}
 						}
 					}),
@@ -42,7 +42,7 @@ exports.performerGetAll = (req, res, next)=>{
 							id: row.id,
 							request: {
 							type: 'GET',
-							url: 'http://localhost:3000/company/'+row.id //indirizzo hardcoddato!!!!
+							url: connect.root + 'company/'+row.id
 						}
 						}
 					})

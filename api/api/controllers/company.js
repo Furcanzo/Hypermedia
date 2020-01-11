@@ -35,7 +35,7 @@ exports.companyGetByID = (req, res, next)=>{
 						return {
 							request: {
 								type: 'GET',
-								url: 'http://localhost:3000/artisticEvent/'+row.events_id//indirizzo hardcoddato!!!!
+								url: connect.root + 'artisticEvent/'+row.events_id
 							}
 						}
 					}) 

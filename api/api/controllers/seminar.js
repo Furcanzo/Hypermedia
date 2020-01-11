@@ -38,7 +38,7 @@ exports.seminarGetByID = (req, res, next)=>{
 							name: row.name,
 							request: {
 								type: 'GET',
-								url: 'http://localhost:3000/artisticEvent/'+row.id //indirizzo hardcoddato!!!!
+								url: connect.root + 'artisticEvent/'+row.id
 							}
 						}
 					}) 
@@ -75,7 +75,7 @@ exports.seminarGetByDay = (req, res, next)=>{
 						id: row.id,
 						request: {
 							type: 'GET',
-							url: 'http://localhost:3000/seminar/' + row.id //indirizzo hardcoddato!!!!
+							url: connect.root + 'seminar/' + row.id
 						}
 					}
 				})

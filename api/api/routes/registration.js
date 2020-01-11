@@ -6,7 +6,9 @@ const authCheck = require('../middleware/basic_check-auth');
 const adminAuthCheck = require('../middleware/admin_check-auth');
 
 //list of routes for artist
-router.get('/', authCheck, registrationController.registrationGetYours)
+router.get('/', authCheck, registrationController.registrationGetYours);
 router.post('/', authCheck , registrationController.registrationPost);
 router.get('/',adminAuthCheck, registrationController.registrationGetAll );
+router.delete('/:registrationId', authCheck, registrationController.registrationDeleteById);
+
 module.exports = router;

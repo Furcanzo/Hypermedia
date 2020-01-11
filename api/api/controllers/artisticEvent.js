@@ -35,7 +35,7 @@ exports.artisticEventGetAll = (req, res, next)=>{
 							id: row.id,
 							request: {
 								type: 'GET',
-								url: 'http://localhost:3000/artisticEvent/' + row.id //indirizzo hardcoddato!!!!
+								url: connect.root+'artisticEvent/' + row.id
 							}
 						}
 					}),
@@ -47,7 +47,7 @@ exports.artisticEventGetAll = (req, res, next)=>{
 							id: row.id,
 							request: {
 								type: 'GET',
-								url: 'http://localhost:3000/seminar/'+row.id //indirizzo hardcoddato!!!!
+								url: connect.root + 'seminar/'+row.id
 							}
 						}
 					})
@@ -88,7 +88,7 @@ exports.artisticEventGetCalendar =  (req, res, next)=>{
 							day: row.date,
 							request: {
 								type: 'GET',
-								url: row.date!=null? 'http://localhost:3000/artisticEvent/day/' + row.date : null//indirizzo hardcoddato!!!!
+								url: row.date!=null? connect.root + 'artisticEvent/day/' + row.date : null
 							}
 						}
 					}),
@@ -98,7 +98,7 @@ exports.artisticEventGetCalendar =  (req, res, next)=>{
 							date: row.date,
 							request: {
 								type: 'GET',
-								url: row.date!=null? 'http://localhost:3000/seminar/day/' + row.date : null//indirizzo hardcoddato!!!!
+								url: row.date!=null? connect.root + 'seminar/day/' + row.date : null
 							}
 						}
 					})
@@ -149,7 +149,7 @@ exports.artisticEventGetByID = (req, res, next)=>{
 							id: row.id,
 							seminar:  {
 								type: 'GET',
-								url: row.seminar_id!=null? 'http://localhost:3000/seminar/'+row.seminar_id : null //indirizzo hardcoddato!!!!
+								url: row.seminar_id!=null? connect.root + 'seminar/'+row.seminar_id : null
 							}
 						}
 					}),
@@ -158,7 +158,7 @@ exports.artisticEventGetByID = (req, res, next)=>{
 							name: row.artist_name!=null? row.artist_name : row.companies_name,
 							request: {
 								type: 'GET',
-								url: row.artists_id ===null? 'http://localhost:3000/company/'+row.companies_id : 'http://localhost:3000/artist/'+row.artists_id //indirizzo hardcoddato!!!!
+								url: row.artists_id ===null? connect.root + 'company/'+row.companies_id : connect.root + 'artist/'+row.artists_id
 							}
 						}
 					}) 
@@ -196,7 +196,7 @@ exports.artisticEventGetByType = (req, res, next)=>{
 							id: row.id,
 							request: {
 								type: 'GET',
-								url: 'http://localhost:3000/seminar/'+row.id //indirizzo hardcoddato!!!!
+								url: connect.root + 'seminar/'+row.id
 							}
 						}
 					})
@@ -222,7 +222,7 @@ exports.artisticEventGetByType = (req, res, next)=>{
 							id: row.id,
 							request: {
 								type: 'GET',
-								url: 'http://localhost:3000/artisticEvent/'+row.id //indirizzo hardcoddato!!!!
+								url: connect.root + 'artisticEvent/'+row.id
 							}
 						}
 					})
@@ -261,7 +261,7 @@ exports.artisticEventGetByDay = (req, res, next)=>{
 						id: row.id,
 						request: {
 							type: 'GET',
-							url: 'http://localhost:3000/artisticEvent/'+row.id //indirizzo hardcoddato!!!!
+							url: connect.root + 'artisticEvent/'+row.id
 						}
 					}
 				})
