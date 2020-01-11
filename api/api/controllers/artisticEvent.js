@@ -1,7 +1,6 @@
 const {Client} = require ('pg');
 const connect = require('../../server');
 
-//TODO Aggiungere foto
 exports.artisticEventGetAll = (req, res, next)=>{
 	const client = new Client({
 		connectionString: connect.connectString
