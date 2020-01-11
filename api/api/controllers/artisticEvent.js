@@ -326,6 +326,7 @@ exports.artisticEventDelete = (req, res, next)=>{
 			error.status = 500;
 			return next(error);
 		}
+		const id = req.params.artisticEventId;
 		client.query('DELETE FROM artistic_events WHERE id =' + id, (err, result)=>{
 			if (err){
 				const error = new Error('Query error');

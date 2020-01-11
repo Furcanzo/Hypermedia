@@ -11,7 +11,7 @@ exports.artistGetByID = (req, res, next)=>{
 			error.status = 500;
 			return next(error);
 		}
-			const id = req.params.artistId;
+		const id = req.params.artistId;
 		client.query('SELECT * FROM artists WHERE id =' + id, (err, result)=>{
 			if (err){
 				const error = new Error('Query error');
@@ -83,7 +83,8 @@ exports.artistDelete = (req, res, next)=>{
 			error.status = 500;
 			return next(error);
 		}
-		client.query('DELETE FROM artist WHERE id =' + id, (err, result)=>{
+		const id = req.params.artistId;
+		client.query('DELETE FROM artists WHERE id =' + id, (err, result)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
