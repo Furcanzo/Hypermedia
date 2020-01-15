@@ -27,6 +27,7 @@ exports.companyGetByID = (req, res, next)=>{
 				const response = {
 					company: result.rows.map(row =>{
 						return {
+							id: row.id,
 							name: row.name,
 							details: row.details
 						}

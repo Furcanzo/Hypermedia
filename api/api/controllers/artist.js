@@ -27,6 +27,7 @@ exports.artistGetByID = (req, res, next)=>{
 				const response = {
 					artist: result.rows.map(row =>{
 						return {
+							id: row.id,
 							name: row.name,
 							details: row.details,
 							current_affiliation: row.current_affiliation,
