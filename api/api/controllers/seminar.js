@@ -85,3 +85,53 @@ exports.seminarGetByDay = (req, res, next)=>{
 		});
 	});
 };
+
+exports.seminarPost = (req, res, next)=>{
+	const client = new Client({
+		connectionString: connect.connectString
+	});
+	client.connect((err, client, done)=>{
+		if (err){
+			const error = new Error('Cannot connect to DataBase');
+			error.status = 500;
+			return next(error);
+		}
+
+		client.query('INSERT INTO seminars (title, day, location)' +
+			'VALUES(\''+req.body.title+'\',\''+req.body.day+'\',\''+req.body.location+'\')', (err, result)=>{
+			if (err){
+				const error = new Error('Query error');
+				error.status = 401;
+				return next(error);
+			}
+			res.status(201).json({
+				message: 'seminar added'
+			});
+		});
+	});
+};
+
+exports.seminarDelete = (req, res, next)=>{
+	const client = new Client({
+		connectionString: connect.connectString
+	});
+	client.connect((err, client, done)=>{
+		if (err){
+			const error = new Error('Cannot connect to DataBase');
+			error.status = 500;
+			return next(error);
+		}
+		const id = req.params.seminarId;
+		client.query('DELETE FROM seminars WHERE id =' + id, (err, result)=>{
+			if (err){
+				const error = new Error('Query error');
+				error.status = 500;
+				return next(error);
+			}
+			res.status(205).json({
+				message: 'seminar deleted'
+			});
+
+		});
+	});
+};

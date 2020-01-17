@@ -46,3 +46,53 @@ exports.companyGetByID = (req, res, next)=>{
 		});
 	});
 };
+
+exports.companyPost = (req, res, next)=>{
+	const client = new Client({
+		connectionString: connect.connectString
+	});
+	client.connect((err, client, done)=>{
+		if (err){
+			const error = new Error('Cannot connect to DataBase');
+			error.status = 500;
+			return next(error);
+		}
+
+		client.query('INSERT INTO companies (name, details)' +
+			'VALUES(\''+req.body.name+'\',\''+req.body.details+'\')', (err, result)=>{
+			if (err){
+				const error = new Error('Query error');
+				error.status = 401;
+				return next(error);
+			}
+			res.status(201).json({
+				message: 'companies added'
+			});
+		});
+	});
+};
+
+exports.companyDelete = (req, res, next)=>{
+	const client = new Client({
+		connectionString: connect.connectString
+	});
+	client.connect((err, client, done)=>{
+		if (err){
+			const error = new Error('Cannot connect to DataBase');
+			error.status = 500;
+			return next(error);
+		}
+		const id = req.params.companyId;
+		client.query('DELETE FROM companies WHERE id =' + id, (err, result)=>{
+			if (err){
+				const error = new Error('Query error');
+				error.status = 500;
+				return next(error);
+			}
+			res.status(205).json({
+				message: 'company deleted'
+			});
+
+		});
+	});
+};
