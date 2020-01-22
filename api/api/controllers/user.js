@@ -87,7 +87,7 @@ exports.userLogin = (req, res, next)=>{
 							},
 							process.env.JWT_KEY,
 							{
-								expiresIn: '1h'
+								expiresIn: '3h'
 							});
 						const response = {
 							message: "Auth Successful",

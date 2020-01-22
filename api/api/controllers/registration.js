@@ -102,7 +102,7 @@ exports.registrationDeleteById = (req, res, next)=>{
 			return next(error);
 		}
 		const id = req.params.registrationId;
-		client.query('DELETE FROM registrations WHERE user_web_id = '+ req.userData.id + 'AND id = '+ id, (err, result)=>{
+		client.query('DELETE FROM registrations WHERE user_web_id = '+ req.userData.id + 'AND artistic_events_id = '+ id, (err, result)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
