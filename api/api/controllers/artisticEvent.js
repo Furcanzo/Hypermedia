@@ -122,7 +122,7 @@ exports.artisticEventGetByID = (req, res, next)=>{
 			return next(error);
 		}
 		const id = req.params.artisticEventId;
-		client.query('SELECT name,day::text,fact_sheet,abstract,seminar_id,id FROM artistic_events WHERE id =' + id, (err, result)=>{
+		client.query('SELECT AE.name,AE.day::text,AE.fact_sheet,AE.abstract,AE.seminar_id,AE.id, S.title FROM artistic_events AE LEFT JOIN seminars S ON seminar_id=S.id WHERE AE.id =' + id, (err, result)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
@@ -148,8 +148,11 @@ exports.artisticEventGetByID = (req, res, next)=>{
 							abstract: row.abstract,
 							id: row.id,
 							seminar:  {
-								type: 'GET',
-								url: row.seminar_id!=null? connect.root + 'seminar/'+row.seminar_id : null
+								title: row.title,
+								request: {
+									type: 'GET',
+									url: row.seminar_id != null ? connect.root + 'seminar/' + row.seminar_id : null
+								}
 							}
 						}
 					}),
@@ -162,7 +165,7 @@ exports.artisticEventGetByID = (req, res, next)=>{
 								url: row.artists_id ===null? connect.root + 'company/'+row.companies_id : connect.root + 'artist/'+row.artists_id
 							}
 						}
-					}) 
+					})
 				};
 				res.status(200).json(response);
 			});
