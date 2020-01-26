@@ -279,7 +279,6 @@ exports.artisticEventGetByDay = (req, res, next)=>{
 };
 
 exports.artisticEventPost = (req, res, next)=>{
-	let seminarId;
 	const client = new Client({
 		connectionString: connect.connectString
 	});
@@ -299,7 +298,6 @@ exports.artisticEventPost = (req, res, next)=>{
 				client.query('INSERT INTO artistic_events (name, fact_sheet, day, abstract, seminar_id)' +
 					'VALUES(\''+req.body.name+'\',\'' +req.body.fact_sheet +'\',\''+req.body.day+'\',\''+req.body.abstract+'\','+ results.rows[0].id +')', (err, result)=>{
 					if (err){
-						console.log(seminarId);
 						const error = new Error('Query error');
 						error.status = 500;
 						return next(error);
@@ -314,7 +312,6 @@ exports.artisticEventPost = (req, res, next)=>{
 			client.query('INSERT INTO artistic_events (name, fact_sheet, day, abstract)' +
 				'VALUES(\''+req.body.name+'\',\'' +req.body.fact_sheet +'\',\''+req.body.day+'\',\''+req.body.abstract+'\')', (err, result)=>{
 				if (err){
-					console.log(seminarId);
 					const error = new Error('Query error');
 					error.status = 500;
 					return next(error);
