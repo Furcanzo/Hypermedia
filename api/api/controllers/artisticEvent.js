@@ -159,10 +159,10 @@ exports.artisticEventGetByID = (req, res, next)=>{
 					performerLink: resultP.rows.map(row =>{
 						return {
 							name: row.artist_name!=null? row.artist_name : row.companies_name,
-							id: row.artists_id!=null? row.artists_id : row.companies_id,
+							id: row.artist_id!=null? row.artists_id : row.companies_id,
 							request: {
 								type: 'GET',
-								url: row.artists_id ===null? connect.root + 'company/'+row.companies_id : connect.root + 'artist/'+row.artists_id
+								url: row.artist_id ===null? connect.root + 'company/'+row.companies_id : connect.root + 'artist/'+row.artist_id
 							}
 						}
 					})
