@@ -40,7 +40,7 @@ exports.artistGetByID = (req, res, next)=>{
 					}),
 					artisticEventLink: resultA.rows.map(row =>{
 						return {
-							name: row.events_name,
+							name: row.event_name,
 							request: {
 								type: 'GET',
 								url: connect.root+'artisticEvent/'+row.events_id
