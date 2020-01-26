@@ -149,6 +149,7 @@ exports.artisticEventGetByID = (req, res, next)=>{
 							id: row.id,
 							seminar:  {
 								title: row.title,
+								id: row.seminar_id,
 								request: {
 									type: 'GET',
 									url: row.seminar_id != null ? connect.root + 'seminar/' + row.seminar_id : null
