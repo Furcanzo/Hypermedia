@@ -18,7 +18,11 @@ exports.companyGetByID = (req, res, next)=>{
 				error.status = 500;
 				return next(error);
 			}
-			client.query('SELECT events_id FROM played WHERE companies_id =' + id, (err, resultA)=>{
+			client.query('SELECT A.name AS event_name, P.events_id AS events_id \n' +
+				'FROM played P \n' +
+				'JOIN artistic_events A \n' +
+				'ON P.events_id = A.id \n' +
+				'WHERE P.companies_id = ' + id, (err, resultA)=>{
 				if (err){
 					const error = new Error('Query error');
 					error.status = 500;
@@ -34,12 +38,13 @@ exports.companyGetByID = (req, res, next)=>{
 					}),
 					artisticEventLink: resultA.rows.map(row =>{
 						return {
+							name: row.event_name,
 							request: {
 								type: 'GET',
-								url: connect.root + 'artisticEvent/'+row.events_id
+								url: connect.root+'artisticEvent/'+row.events_id
 							}
 						}
-					}) 
+					})
 				};
 				res.status(200).json(response);
 			});
