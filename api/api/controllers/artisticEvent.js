@@ -33,6 +33,10 @@ exports.artisticEventGetAll = (req, res, next)=>{
 							day: row.day,
 							id: row.id,
 							type: row.type,
+							photos:{
+								type: 'GET',
+								url: connect.root + 'photos/preview/artisticEvent/'+row.id
+							},
 							request: {
 								type: 'GET',
 								url: connect.root+'artisticEvent/' + row.id
@@ -45,6 +49,10 @@ exports.artisticEventGetAll = (req, res, next)=>{
 							title: row.title,
 							day: row.day,
 							id: row.id,
+							photos:{
+								type: 'GET',
+								url: connect.root + 'photos/preview/seminar/'+row.id
+							},
 							request: {
 								type: 'GET',
 								url: connect.root + 'seminar/'+row.id
@@ -147,6 +155,10 @@ exports.artisticEventGetByID = (req, res, next)=>{
 							fact_sheet: row.fact_sheet,
 							abstract: row.abstract,
 							id: row.id,
+							photos:{
+								type: 'GET',
+								url: connect.root+'photos/requestList/artisticEvent/'+row.id
+							},
 							seminar:  {
 								title: row.title,
 								id: row.seminar_id,
@@ -199,6 +211,10 @@ exports.artisticEventGetByType = (req, res, next)=>{
 							title: row.title,
 							day: row.day,
 							id: row.id,
+							photos:{
+								type: 'GET',
+								url: connect.root + 'photos/preview/seminar/'+row.id
+							},
 							request: {
 								type: 'GET',
 								url: connect.root + 'seminar/'+row.id
@@ -225,6 +241,10 @@ exports.artisticEventGetByType = (req, res, next)=>{
 							name: row.name,
 							day: row.day,
 							id: row.id,
+							photos:{
+								type: 'GET',
+								url: connect.root + 'photos/preview/artisticEvent/'+row.id
+							},
 							request: {
 								type: 'GET',
 								url: connect.root + 'artisticEvent/'+row.id
@@ -264,6 +284,10 @@ exports.artisticEventGetByDay = (req, res, next)=>{
 						name: row.name,
 						day: row.day,
 						id: row.id,
+						photos:{
+							type: 'GET',
+							url: connect.root + 'photos/preview/artisticEvent/'+row.id
+						},
 						request: {
 							type: 'GET',
 							url: connect.root + 'artisticEvent/'+row.id
@@ -319,7 +343,7 @@ exports.artisticEventPost = (req, res, next)=>{
 				res.status(201).json({
 					message: 'event added'
 				});
-		});
+			});
 		}
 	});
 };

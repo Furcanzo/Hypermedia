@@ -33,7 +33,11 @@ exports.companyGetByID = (req, res, next)=>{
 						return {
 							id: row.id,
 							name: row.name,
-							details: row.details
+							details: row.details,
+							photos:{
+								type: 'GET',
+								url: connect.root+'photos/requestList/company/'+row.id
+							}
 						}
 					}),
 					artisticEventLink: resultA.rows.map(row =>{

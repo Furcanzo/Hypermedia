@@ -29,10 +29,14 @@ exports.performerGetAll = (req, res, next)=>{
 						return {
 							name: row.name,
 							id: row.id,
+							photos:{
+								type: 'GET',
+								url: connect.root + 'photos/preview/artist/'+row.id
+							},
 							request: {
-							type: 'GET',
-							url: connect.root + 'artist/'+row.id
-						}
+								type: 'GET',
+								url: connect.root + 'artist/'+row.id
+							}
 						}
 					}),
 					countCompanies: resultC.rows.length,
@@ -40,10 +44,14 @@ exports.performerGetAll = (req, res, next)=>{
 						return {
 							name: row.name,
 							id: row.id,
+							photos:{
+								type: 'GET',
+								url: connect.root + 'photos/preview/company/'+row.id
+							},
 							request: {
-							type: 'GET',
-							url: connect.root + 'company/'+row.id
-						}
+								type: 'GET',
+								url: connect.root + 'company/'+row.id
+							}
 						}
 					})
 				};

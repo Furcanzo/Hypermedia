@@ -27,10 +27,14 @@ exports.seminarGetByID = (req, res, next)=>{
 				const response = {
 					seminars: result.rows.map(row =>{
 						return {
+							id: row.id,
 							title: row.title,
 							day: row.day,
 							location: row.location,
-							id: row.id
+							photos:{
+								type: 'GET',
+								url: connect.root+'photos/requestList/seminar/'+row.id
+							}
 						}
 					}),
 					artisticEventLink: resultA.rows.map(row =>{
@@ -70,9 +74,13 @@ exports.seminarGetByDay = (req, res, next)=>{
 				count: result.rows.length,
 				seminars: result.rows.map(row => {
 					return {
+						id: row.id,
 						title: row.title,
 						day: row.day,
-						id: row.id,
+						photos:{
+							type: 'GET',
+							url: connect.root + 'photos/preview/seminar/'+row.id
+						},
 						request: {
 							type: 'GET',
 							url: connect.root + 'seminar/' + row.id

@@ -35,7 +35,11 @@ exports.artistGetByID = (req, res, next)=>{
 							name: row.name,
 							details: row.details,
 							current_affiliation: row.current_affiliation,
-							main_achievements: row.main_achievements
+							main_achievements: row.main_achievements,
+							photos:{
+								type: 'GET',
+								url: connect.root+'photos/requestList/artist/'+row.id
+							}
 						}
 					}),
 					artisticEventLink: resultA.rows.map(row =>{

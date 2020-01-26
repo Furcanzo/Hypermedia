@@ -11,6 +11,7 @@ const companyRoutes = require('./api/routes/company');
 const registrationRoutes = require('./api/routes/registration');
 const seminarRoutes = require('./api/routes/seminar');
 const userRoutes = require('./api/routes/user');
+const galleryRoutes = require('./api/routes/gallery');
 
 //Utilities
 app.use(morgan('dev'));
@@ -36,6 +37,7 @@ app.use('/company', companyRoutes);
 app.use('/registration', registrationRoutes);
 app.use('/seminar', seminarRoutes);
 app.use('/user', userRoutes);
+app.use('/photos', galleryRoutes);
 
 
 //Errors handling
