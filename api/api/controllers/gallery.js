@@ -160,3 +160,90 @@ exports.patch = (req, res, next)=>{
         });
     });
 };
+
+exports.getStaticAssets = (req, res, next)=>{
+    const response = {
+        assets: [
+            {
+                name: "background",
+                request: {
+                    type: 'GET',
+                    url: connect.root + 'photos/background'
+                }
+            },
+            {
+                name: "logo",
+                request: {
+                    type: 'GET',
+                    url: connect.root + 'photos/logo'
+                }
+            },
+            {
+                name: "decorativeLine",
+                request: {
+                    type: 'GET',
+                    url: connect.root + 'photos/decorativeLine'
+                }
+            },
+            {
+                name: "icon",
+                request: {
+                    type: 'GET',
+                    url: connect.root + 'photos/icon'
+                }
+            },
+            {
+                name: "genericArtisticEvent",
+                request: {
+                    type: 'GET',
+                    url: connect.root + 'photos/genericArtisticEvent'
+                }
+            },
+            {
+                name: "genericPerformer",
+                request: {
+                    type: 'GET',
+                    url: connect.root + 'photos/genericPerformer'
+                }
+            },
+            {
+                name: "genericSeminar",
+                request: {
+                    type: 'GET',
+                    url: connect.root + 'photos/genericSeminar'
+                }
+            }
+
+        ]
+
+    };
+    res.status(200).json(response);
+};
+
+exports.getStaticFile = (req, res, next)=>{
+    let file;
+    switch (req.params.asset) {
+        case 'background':
+            file = 'background.jpg';
+            break;
+        case 'logo' :
+            file = 'logo_festival.png';
+            break;
+        case 'decorativeLine' :
+            file = 'decorative_line.png';
+            break;
+        case 'icon' :
+            file = 'favicon.ico';
+            break;
+        case 'genericArtisticEvent' :
+            file = 'artistic_events.jpg';
+            break;
+        case 'genericPerformer' :
+            file = 'performers.jpg';
+            break;
+        case 'genericSeminar' :
+            file = 'seminars.jpg';
+            break;
+    }
+    res.sendFile(file, {root: __dirname + '/../../staticAssets'});
+};

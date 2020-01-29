@@ -37,4 +37,20 @@ router.get('/requestList/:type/:id', galleryController.getRequestList);
 router.get('/id/:id', galleryController.getById);
 router.get('/preview/:type/:id', galleryController.getPreview);
 router.patch('/:type/:id', adminAuthCheck, upload.single('image'), galleryController.patch);
+
+//static assets
+/*
+asset =
+    background,
+    logo,
+    decorativeLine,
+    icon,
+    genericArtisticEvent,
+    genericPerformer,
+    genericSeminar
+ */
+
+router.get('/staticAssets', galleryController.getStaticAssets);
+router.get('/:asset', galleryController.getStaticFile);
+
 module.exports = router;
