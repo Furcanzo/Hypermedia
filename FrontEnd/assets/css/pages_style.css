@@ -2,19 +2,19 @@ body{
 	background-color: #a5eaff;
 }
 #page{
-	background-image: url("D:/Università/Hypermedia Applications/Progetto/public/assets/img/background.jpg"); 
+	background-image: url("../../assets/img/background.jpg"); 
 	background-repeat: no-repeat;
+  	background-attachment: fixed;
 	margin-left:5%;
 	margin-right:5%;
 	width: 90%;
 	height: 100%;
 	margin-top: 0;
-	margin-bottom: 5%;
+	margin-bottom: 1%;
 	box-shadow: 0.2em 0.2em 1.2em 0.5em #888888;
 	float: left;
 	z-index: 1;
 }
-
 
 /*nav*/
 .navbar{
@@ -26,31 +26,26 @@ body{
 	float: left;
 	opacity: 1;
 	overflow: hidden;
-	z-index: 2;
+	z-index: 4;
 }
 .bg-dark{
-	background-color: transparent!important;
+	background-color: black;
+	background: transparent;
 }
 .nav-link{
-	color:black!important;
+	color:white!important;
 	font-weight:bold;
-	opacity: 0.8!important;
+	opacity: 0.5!important;
 }
 .nav-current{
 	opacity: 1!important;
-	color: #75151e!important;
 }
 .nav-link:hover{
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg id='squiggle-link' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' viewBox='0 0 20 4'%3E%3Cstyle type='text/css'%3E.squiggle{animation:shift .3s linear infinite;}@keyframes shift {from {transform:translateX(0);}to {transform:translateX(-20px);}}%3C/style%3E%3Cpath fill='none' stroke='%23453886' stroke-width='2' class='squiggle' d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3'/%3E%3C/svg%3E");
-  background-position: bottom;
-  background-repeat: repeat-x;
-  background-size: 1.6em;
-  border-bottom: 0;
-  padding-bottom: .3em;
-  text-decoration: none;
+	opacity: 1!important;
 }
 .pull-right li a{
-	padding-right: 3em;
+	margin-right: 3em;
+	padding-right: 0;
 	padding-left:0;
 	color: #ffd700;
 	font-style: italic;
@@ -60,14 +55,32 @@ body{
 	text-decoration: none;
 	opacity: 1;
 }
+#signin_nav{
+	display: block;
+	color: #ffd700!important;
+}
+#email_nav{
+	display: none;
+}
+#email_nav{
+	opacity: 0.5!important;
+	cursor: default;
+	color: #ffd700!important;
+}
+#logout_nav{
+	display: none;
+	color: #ffd700!important;
+}
 .shopping_cart{
 	font-size: 150%;
 	opacity: 0.8;
+	display: none;
 }
 .shopping_cart:hover{
 	opacity: 1;
 }
 .fa{
+	margin-right: 1em; 
 	color:#ffd700;
 }
 /*end_nav*/
@@ -76,7 +89,7 @@ body{
 footer{
 	width: 100%;
 	padding-left: 2%;
-	padding-bottom: 2%;
+	padding-bottom: 0;
 	padding-right: 2%;
 	float: left;
 }
@@ -105,14 +118,34 @@ footer{
 	font-size: 1vw;
 }
 
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
 @media (max-width: 768px) {
+	.pull-right{
+		float: none!important;
+	}
+	.nav-item{
+		width: 100%;
+	}
+	#email_nav{
+		padding: 0!important;
+	}
 	.footer_license{
 		width: 100%;
 		float:left;
 		text-align: center;
 	}	
 	.footer_license_text{
-		font-size: 2vw;
+		font-size: 3vw;
 	}
 	.footer_info_link{
 		font-size: 0;

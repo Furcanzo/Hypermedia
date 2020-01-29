@@ -1,0 +1,374 @@
+.content_part{
+	width: 90%;
+	margin:5%;
+    text-align: center;
+}
+#line_img{
+    width: 50%;
+    margin-top: 2em; 
+}
+.performers_titles{
+    font-size: 3vw;
+	text-align: center;
+	color: black;
+	margin-bottom: 0.5%;
+	margin-left: 2%;
+	margin-right: 2%;
+}
+.box_link{
+    cursor: pointer;
+}
+.box_link:hover{
+    text-decoration: none;
+}
+.title_box{
+    width: 23%;
+    float: left;
+    margin: 5%;
+    background-color: #F0F0F0;
+    box-shadow: 0em 0em 1em 0.3em #000000;
+    display: none;
+}
+.title_box:hover{
+    box-shadow: 0em 0em 1em 1em #000000;
+}
+.box_img{
+    width: 100%;
+}
+.performer_info{
+    width: 96%;
+    line-height: 100%;
+    text-align: center;
+    margin: 2%;
+    border-top-style: solid;
+    border-top-color: #C8C8C8;  
+}
+.performer_name{
+    width: 100%;
+    color:#75151e;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 200%;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+.dropdown{
+    left: 0;
+    margin-top: 2em;
+    margin-left: 40%;
+    margin-right: 40%;
+    width: 20%;
+    z-index: 2;
+    position: absolute;
+}
+#container1{
+    width: 100%;
+    z-index: 2;
+    margin-top: 7em;
+    display: none;
+}
+#artists_performers{
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+#container2{
+    width: 100%;
+    z-index: 0;
+    margin-top: 6em;
+    text-align: center;
+    display: none;
+}
+#companies_performers{
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+#type_button{
+    width: 100%;
+    background-color: #75151e;
+    color: white;
+    font-weight: bold;
+    display: block;
+}
+.type{
+    width: 100%;
+    color:#75151e ;
+    font-weight: bold;
+    background-color: white;
+    border-left-style: solid;
+    border-left-color: black;
+    border-right-style: solid;
+    border-right-color: black; 
+    border-bottom-style: solid;
+    border-bottom-color: black;  
+    text-decoration: none; 
+    cursor: pointer;
+}
+.type:hover{
+    color:white;
+    background-color: #75151e;
+}
+.active{
+    display: none;
+}
+.performers_types{
+    display: none;
+    list-style-type: none;
+    width: 100%;
+    padding: 0;
+}
+#type_button:hover + .performers_types{
+    display: block;
+}
+.performers_types:hover{
+    display: block;
+}
+
+#n_pages{
+    float: right;
+}
+.dropdown1{
+    left: 0;
+    margin-left: 82%;
+    margin-right: 10%;
+    width: 8%;
+    z-index: 2;
+    position: absolute;
+}
+.dropdown2{
+    left: 0;
+    margin-left: 82%;
+    margin-right: 10%;
+    width: 8%;
+    z-index: 2;
+    position: absolute;
+}
+#n_s_pages{
+    float: right;
+    width: 100%;
+}
+#page_list{
+    display: none;
+    list-style-type: none;
+    padding: 0;
+}
+#page_button{
+    width: 100%;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+    text-decoration: none;
+    padding: 5%;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    box-shadow: 0em 0em 1em 0.3em #000000; 
+}
+#page_button:hover{
+    cursor: pointer;
+}
+#page_s_list{
+    display: none;
+    list-style-type: none;
+    padding: 0;
+}
+#page_s_button{
+    width: 100%;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+    text-decoration: none;
+    padding: 5%;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    box-shadow: 0em 0em 1em 0.3em #000000; 
+}
+#page_s_button:hover{
+    cursor: pointer;
+}
+#page_list{
+    display: none;
+    list-style-type: none;
+    padding: 0;
+    max-height: 10em;
+    overflow-y: scroll;
+}
+/* width */
+#page_list::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+#page_list::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 10px #75151e; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+#page_list::-webkit-scrollbar-thumb {
+  background: #75151e; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+#page_list::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+}
+#page_s_list{
+    display: none;
+    list-style-type: none;
+    padding: 0;
+    max-height: 10em;
+    overflow-y: scroll;
+}
+/* width */
+#page_s_list::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+#page_s_list::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 10px #75151e; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+#page_s_list::-webkit-scrollbar-thumb {
+  background: #75151e; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+#page_s_list::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+}
+.num{
+    display: block;
+    width: 100%;
+    color: black;
+    font-weight: bold;
+    background-color: white;  
+    border-bottom-style: solid;
+    border-bottom-color: black; 
+    text-decoration: none; 
+    cursor: pointer;
+}
+.num:hover{
+    color: white;
+    background-color: black;
+}
+.num_s{
+    display: block;
+    width: 100%;
+    color: black;
+    font-weight: bold;
+    background-color: white;  
+    border-bottom-style: solid;
+    border-bottom-color: black; 
+    text-decoration: none; 
+    cursor: pointer;
+}
+.num_s:hover{
+    color: white;
+    background-color: black;
+}
+.page_active{
+    display: block;
+    color: white;
+    text-decoration: underline;
+    font-weight: bold;
+    background-color: black;
+}
+.page_active:hover{
+    color: white;
+    cursor: context-menu;
+}
+.page_active_s{
+    display: block;
+    color: white;
+    text-decoration: underline;
+    font-weight: bold;
+    background-color: black;
+}
+.page_active_s:hover{
+    color: white;
+    cursor: context-menu;
+}
+.titles{
+    margin-left: 30%;
+    margin-right: 30%;
+    width: 40%;
+    color: white;
+    background-color: rgb(0, 0, 0,0.5);
+    display: none;
+}
+
+@media (max-width: 768px) and (min-width: 501px) {
+    .title_box{
+        width: 40%;
+    }
+    #line_img{
+        opacity: 0;
+    }
+    .performers_titles{
+        font-size: 3em;
+    }
+    .back{
+        display: block;
+    }
+    .performer_name{
+        font-size: 150%;
+    }
+    #page_list::-webkit-scrollbar {
+      width: 10px;
+    }
+    #page_s_list::-webkit-scrollbar {
+      width: 10px;
+    }
+}
+@media (max-width: 500px){
+    .title_box{
+        width: 80%;
+        margin: 10%;
+    }
+    #line_img{
+        opacity: 0;
+    }
+    .performers_titles{
+        font-size: 3em;
+    }
+    .back{
+        margin-top: 2em;
+        display: block;
+    }
+    .box_img{
+        display: none;
+    }
+    .titles{
+        margin-left: 17%;
+        margin-right: 17%;
+        width: 66%;
+    }
+    #companies_performers{
+        margin-top: 3em;
+    }
+    #artists_performers{
+        margin-top: 3em;
+    }
+    .performer_name{
+        font-size: 100%;
+    }
+    #page_list::-webkit-scrollbar {
+      width: 5px;
+    }
+    #page_s_list::-webkit-scrollbar {
+      width: 5px;
+    }
+    #container1{
+        margin-top: 3em;
+    }
+    #container2{
+        margin-top: 3em;
+    }
+}

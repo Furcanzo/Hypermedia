@@ -5,15 +5,16 @@
 <!--Bootstrap import-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--Bootstrap import end-->
 
-<link rel="icon" href="D:\Università\Hypermedia Applications\Progetto\public\assets\img\favicon.ico">
-<link rel="stylesheet" type="text/css" href="D:\Università\Hypermedia Applications\Progetto\public\pages\css\contact_us_page.css">
-<link rel="stylesheet" type="text/css" href="D:\Università\Hypermedia Applications\Progetto\public\assets\css\page_style.css">
+<link rel="icon" href="..\assets\img\favicon.ico">
+<link rel="stylesheet" type="text/css" href="../assets/css\contact_us_page.css">
+<link rel="stylesheet" type="text/css" href="..\assets\css\pages_style.css">
 
 </head>
 
-<body>
+<body onload="login_nav()">
   <!-- Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,51 +23,57 @@
 
       <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><a class="nav-link" href="D:\Università\Hypermedia Applications\Progetto\public\index.html">Home<span class="sr-only">(current)</span></a></li>
-          <li class="nav-item"><a class="nav-link" href="D:\Università\Hypermedia Applications\Progetto\public\pages\artistic_events_page.html">Artistic Events</a></li>
-          <li class="nav-item"><a class="nav-link" href="D:\Università\Hypermedia Applications\Progetto\public\pages\performers_page.html">Performers</a></li>
-          <li class="nav-item"><a class="nav-link" href="D:\Università\Hypermedia Applications\Progetto\public\pages\seminars_page.html">Seminars</a></li>
-          <li class="nav-item"><a class="nav-link nav-current" href="D:\Università\Hypermedia Applications\Progetto\public\pages\contact_us_page.html">Contact us</a></li>
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home<span class="sr-only">(current)</span></a></li>
+          <li class="nav-item"><a class="nav-link" href=".\artistic_events_page.html">Artistic Events</a></li>
+          <li class="nav-item"><a class="nav-link" href=".\performers_page.html">Performers</a></li>
+          <li class="nav-item"><a class="nav-link nav-curren" href=".\contact_us_page.html">Contact us</a></li>
         </ul>
         <ul class="nav pull-right">
-              <li><a href="Pages\Login\index.html">Sign Up</a></li>
-              <li><a href="Pages\Login\index.html">Sign In</a></li>
+              <li class="nav-item"><a class="nav-link" id="signin_nav" href="./login_page.html">Sign In</a></li>
+              <li class="nav-item"><span class="nav-link" id="email_nav"></span></li>
+              <li class="nav-item"><a class="nav-link" id="logout_nav" onclick="logout()" href="../index.html">Logout</a></li>
         </ul>
 
-        <a class= "shopping_cart" href="#" title="Pre-order your tickets here"><i class="fa fa-ticket" aria-hidden="true"></i></a>
+        <a class= "shopping_cart" id="shopping_cart" href="./shopping_cart_page.html" title="Your tickets"><i class="fa fa-ticket" aria-hidden="true"></i></a>
       </div>
     </nav>
      <!-- Page-->
     <div id="page">
-      <center>
-      <h1> Contact us </h1>
-      <p class="info">For general info or if you need help:</p>
-      <p>Tel: 000-000-0000</p>
-      <p>Fax: 000-000-0000</p>
-      <p>Email: info@hypepperony.com</p>
-      <p class="info">If you want to support us, contact the Creators</p>
-      <p>matteo.baragioli@hypepperony.com</p>
-      <p>roberto.buratti@hypepperony.com</p>
-      <p>paolo.capra@hypepperony.com</p>
-      </center>
+      <div class="info_box clearfix">
+        <div class="back">
+          <a href="..\index.html" class="previous">&#129144; Go back to homepage</a>
+        </div>
+        <center>
+          <br>
+          <h1> Contact us </h1>
+          <p class="info">For general info or if you need help:</p>
+          <p class="information">Tel: 000-000-0000</p>
+          <p class="information">Fax: 000-000-0000</p>
+          <p class="information">Email: info@hypepperony.com</p>
+          <p class="info">If you want to support us, contact the Creators</p>
+          <p class="information">matteo.baragioli@hypepperony.com</p>
+          <p class="information">roberto.buratti@hypepperony.com</p>
+          <p class="information">paolo.capra@hypepperony.com</p>
+          <br>
+        </center>
+      </div>
     </div>
 
  <footer>
     <div class="footer_license">
-      <p class="footer_license_text"> All rights reserved by Matteo Baragioli, Roberto Buratti, Paolo Capra</p>
+      <p class="footer_license_text"> &copy All rights reserved by Matteo Baragioli, Roberto Buratti, Paolo Capra</p>
     </div>
     <div class="footer_info">
-      <a class="footer_info_link" href="D:\Università\Hypermedia Applications\Progetto\public\pages\artistic_events_page.html"> Artistic Events </a>
+      <a class="footer_info_link" href="artistic_events_page.html"> Artistic Events </a>
       <p class="footer_separator"> | </p>
-      <a class="footer_info_link" href="D:\Università\Hypermedia Applications\Progetto\public\pages\performers_page.html"> Performers </a>
+      <a class="footer_info_link" href="performers_page.html"> Performers </a>
       <p class="footer_separator"> | </p>
-      <a class="footer_info_link" href="D:\Università\Hypermedia Applications\Progetto\public\pages\seminars_page.html"> Seminars </a>
-      <p class="footer_separator"> | </p>
-      <a class="footer_info_link" href="D:\Università\Hypermedia Applications\Progetto\public\pages\contact_us_page.html"> Contact us </a>
+      <a class="footer_info_link" href="contact_us_page.html"> Contact us </a>
     </div>
   </footer>
-
-
+<script type='text/javascript' src='../assets\js\contact_us.js'></script>
+<script type='text/javascript' src='..\assets\js\login.js'></script>
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
