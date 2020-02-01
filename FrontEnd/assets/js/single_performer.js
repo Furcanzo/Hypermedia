@@ -34,6 +34,37 @@ function single_page(){
 		document.getElementById('current_affiliation').innerHTML=current_affiliation;
 		document.getElementById('main_achievements').innerHTML=main_achievements;
 		document.getElementsByClassName('item_part')[0].style.opacity='1';
+		//get images
+				var xmlhttp = new XMLHttpRequest();
+				var url = localStorage.getItem("server_url")+"photos/requestList/artist/"+jsonData.artist[0].id;
+				xmlhttp.onreadystatechange = function() {
+				    if (this.readyState == 4 && this.status == 200) {
+				        var myArr = JSON.parse(this.responseText);
+				        for(var p=0;p<myArr.photos.length;p++){
+				        	let newDivPic = document.createElement("div");
+				        	let newImg = document.createElement("img");
+				        	let newLiImg = document.createElement("li");
+				        	if(p==0){
+				        		newDivPic.className='carousel-item active';
+				        	}else{
+				        		newDivPic.className='carousel-item';
+				        	}
+				        	newImg.className="d-block w-100";
+				        	newImg.alt="Slide "+(i+1);
+				        	newImg.src=myArr.photos[p].request.url;
+				        	newLiImg.dataset.target="#carouselExampleIndicators";
+				        	newLiImg.setAttribute('data-slide-to',p);
+				        	if(p==0){
+				        		newLiImg.class="active";
+				        	}
+				        	document.getElementById("carousel-inner").appendChild(newDivPic);
+				        	newDivPic.appendChild(newImg);
+				        	document.getElementById("carousel-indicators").appendChild(newLiImg);
+				        }
+				    }
+				};
+				xmlhttp.open("GET", url, true);
+				xmlhttp.send();
 		if(jsonData.artisticEventLink.length>0){
 			document.getElementById('events_title').style.display='block';
 		}
@@ -119,6 +150,37 @@ function single_page(){
 		document.getElementById('current_affiliation').style.display="none";
 		document.getElementById('main_achievements').style.display="none";
 		document.getElementsByClassName('item_part')[0].style.opacity='1';
+		//get images
+				var xmlhttp = new XMLHttpRequest();
+				var url = localStorage.getItem("server_url")+"photos/requestList/company/"+jsonData.company[0].id;
+				xmlhttp.onreadystatechange = function() {
+				    if (this.readyState == 4 && this.status == 200) {
+				        var myArr = JSON.parse(this.responseText);
+				        for(var p=0;p<myArr.photos.length;p++){
+				        	let newDivPic = document.createElement("div");
+				        	let newImg = document.createElement("img");
+				        	let newLiImg = document.createElement("li");
+				        	if(p==0){
+				        		newDivPic.className='carousel-item active';
+				        	}else{
+				        		newDivPic.className='carousel-item';
+				        	}
+				        	newImg.className="d-block w-100";
+				        	newImg.alt="Slide "+(i+1);
+				        	newImg.src=myArr.photos[p].request.url;
+				        	newLiImg.dataset.target="#carouselExampleIndicators";
+				        	newLiImg.setAttribute('data-slide-to',p);
+				        	if(p==0){
+				        		newLiImg.class="active";
+				        	}
+				        	document.getElementById("carousel-inner").appendChild(newDivPic);
+				        	newDivPic.appendChild(newImg);
+				        	document.getElementById("carousel-indicators").appendChild(newLiImg);
+				        }
+				    }
+				};
+				xmlhttp.open("GET", url, true);
+				xmlhttp.send();
 		if(jsonData.artisticEventLink.length>0){
 			document.getElementById('events_title').style.display='block';
 		}

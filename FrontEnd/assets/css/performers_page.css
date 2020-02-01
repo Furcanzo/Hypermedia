@@ -314,10 +314,8 @@
     .title_box{
         width: 40%;
     }
-    #line_img{
-        opacity: 0;
-    }
     .performers_titles{
+        margin-top: 1em;
         font-size: 3em;
     }
     .back{
@@ -338,8 +336,9 @@
         width: 80%;
         margin: 10%;
     }
-    #line_img{
-        opacity: 0;
+    .events_titles{
+        margin-top: 2em;
+        font-size: 2em;
     }
     .performers_titles{
         font-size: 3em;
@@ -347,9 +346,6 @@
     .back{
         margin-top: 2em;
         display: block;
-    }
-    .box_img{
-        display: none;
     }
     .titles{
         margin-left: 17%;
@@ -377,4 +373,11 @@
     #container2{
         margin-top: 3em;
     }
+    .type{
+        font-size: 0.9em;
+    }
+    #type_button{
+        font-size: 0.9em;
+    }
+
 }

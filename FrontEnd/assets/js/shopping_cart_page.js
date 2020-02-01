@@ -2,7 +2,7 @@ localStorage.setItem("page_to_display",1);
 localStorage.setItem("page_s_to_display",1);
 localStorage.setItem("page_perf_to_display",1);
 localStorage.setItem("page_perf_s_to_display",1);
-var number = 9;
+var number = 3;
 
 function refresh_page(){
 	var url_string = window.location.href;
@@ -36,12 +36,6 @@ function tickets(){
 	xmlhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
 	        var myArr = JSON.parse(this.responseText);
-        	if(window.screen.width<=499)
-				number=3
-			else if(window.screen.width<=768&&window.screen.width>=500)
-				number=4;
-			else
-				number=6;
 	        list(myArr);
 	    }
 	};

@@ -43,22 +43,41 @@
         <input class="previous" id="previous" action="action" onclick="window.history.go(-1); return false;" type="submit" value="&#129144; Go back" />
       </div>
       <div class="loader" id="loader"></div>
+      <div class="details">
+        <div class="title"><h1 id="title"></h1></div>
+        <div class="date"><h2 id="date"></h2></div>
+      </div>
       <div class="item_part clearfix" id="item_part">
         <div id="gallery" class="gallery">
-          <div class="item_picture clearfix" id="item_pic"><img id="event_pic1"></div>
-        </div>
-        <div class="item_info clearfix" id="item_info">
-          <div class="title"><h1 id="title"></h1></div>
-          <div class="date"><h2 id="date"></h2></div>
-          <div class="fact_sheet"><p id="fact_sheet"></p></div>
-          <div class="abstract"><p id="abstract"></p></div>
-          <div class="location"><p id="location"></p></div>
-          <div class="ticket_box clearfix" id="ticket_box">
-            <p id="error"></p>
-            <button class="ticket" id="ticket">Pre-order event's ticket</button>
-            <svg class="checkmark" id="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+          <h1 class="gallery_title">Photo Gallery</h1>
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators" id="carousel-indicators">
+            </ol>
+            <div class="carousel-inner" id="carousel-inner">
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
         </div>
+        <div class="item_info clearfix" id="item_info">
+          <div class="fact_sheet" id="fact_sheet"></div>
+          <div class="abstract"><p id="abstract"></p></div>
+          <div class="location">
+            <h1 id="location_title">Location</h1>
+            <p id="location"></p>
+          </div>
+        </div>
+      </div>
+      <div class="ticket_box clearfix" id="ticket_box">
+        <p id="error"></p>
+        <button class="ticket" id="ticket">Pre-order event's ticket</button>
+        <svg class="checkmark" id="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
       </div>
       <div class="performers_list clearfix" id="list_part">
         <div class="performers_title clearfix" id="performers_title"><h1 id="performers">Event's performers</h1></div>

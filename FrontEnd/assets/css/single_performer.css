@@ -31,20 +31,23 @@
 #performer_pic{
 	width: 100%;
 }
+#item_info{
+	display: block;
+}
 .item_info{
 	width: 40%;
 	margin: 5%;
 	float:left;
 	text-align: center;
-	margin-top:10%;
 	background-color: rgb(240, 240, 240,0.5);
 	box-shadow: 0em 0em 1em 0.3em #000000;
+	margin-top: 6.5em;
 }
 .name{
 	width: 94%;
 	margin: 3%;
 	font-family: Times New Romance;
-	color: #666666;
+	color: black;
 }
 #name{
 	font-size: 4em;
@@ -120,21 +123,90 @@
 	cursor: pointer;
 	background-color: rgb(240, 240, 240,0.8);
 }
-@media (max-width: 768px){
-    .item_info{
+.gallery{
+	width: 45%;
+	float: left;
+	margin-left: 5%;
+	text-align: center;
+}
+.gallery_title{
+	width: 100%;
+	color: black;
+	margin-bottom: 10%;
+}
+.carousel-item{
+	text-align: center!important;
+}
+.d-block{
+	width: 100%!important;
+	height: 100%!important;
+    object-fit: fill!important;
+}
+.carousel-control-next{
+	background-color:rgb(156, 156, 156,1);
+	width: 5%;
+}
+.carousel-control-prev{
+	background-color:rgb(156, 156, 156,1); 
+	width: 5%;
+}
+.carousel-indicators{
+	background-color:rgb(156, 156, 156,0.3); 
+}
+.details{
+	width: 90%;
+	margin:5%;
+	text-align: center;
+}
+@media (min-width: 1401px) {
+	.item_info{
+    	margin-top: 8em;
+    }
+    .carousel-item{
+		height: 30em!important;
+	}
+}
+@media (max-width: 991px){
+    .previous{
+		margin-top: 4em;
+	}
+	.item_info{
     	width: 90%;
     }
-    .item_picture{
-    	width: 50%;
-    	margin-right: 25%;
-    	margin-left: 25%;
+    .gallery{
+    	width: 80%;
+		float: left;
+		margin-left: 10%;
+		text-align: center;
     }
+
 }
 @media (max-width: 500px){
+    #name{
+		font-size: 2em;
+		font-weight: bold;
+	}
+	.gallery{
+		width: 96%;
+		float: left;
+		margin-left: 2%;
+		text-align: center;
+	}
     .item_info{
     	width: 90%;
     }
-    .item_picture{
-    	width: 90%;
-    }
+    .carousel-control-next{
+		background-color:rgb(156, 156, 156,1);
+		width: 10%;
+	}
+	.carousel-control-prev{
+		background-color:rgb(156, 156, 156,1); 
+		width: 10%;
+	}
+	.gallery_title{
+		font-size: 1em;
+	}
+	.carousel-item{
+		height: 15em!important;
+	}
 }

@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="../assets/css\single_performer.css">
 <link rel="stylesheet" type="text/css" href="../assets/css\pages_style.css">
-<link id="favicon" rel="icon" href="./assets/img/favicon.ico">
+<link id="favicon" rel="icon">
 <title id="page_title">Performer</title>
 </head>
 
@@ -42,10 +42,28 @@
       <div class="upper_part clearfix">
         <input class="previous" id="previous" action="action" onclick="window.history.go(-1); return false;" type="submit" value="&#129144; Go back" />
       </div>
+      <div class="details">
+        <div class="name"><h1 id="name"></h1></div>
+      </div>
       <div class="item_part clearfix">
-        <div class="item_picture clearfix"><img id="performer_pic" src="..\assets\img\performers.jpg"></div>
+        <div id="gallery" class="gallery">
+          <h1 class="gallery_title">Photo Gallery</h1>
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators" id="carousel-indicators">
+            </ol>
+            <div class="carousel-inner" id="carousel-inner">
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
         <div class="item_info clearfix">
-          <div class="name"><h1 id="name"></h1></div>
           <div class="details"><p id="details"></p></div>
           <div class="current_affiliation"><p id="current_affiliation"></p></div>
           <div class="main_achievements"><p id="main_achievements"></p></div>

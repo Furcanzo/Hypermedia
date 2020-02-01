@@ -1,4 +1,4 @@
-var number=6;
+var number=3;
 var xmlhttp = new XMLHttpRequest();
 var url_string = window.location.href;
 var url = new URL(url_string);
@@ -12,12 +12,6 @@ xmlhttp.onreadystatechange = function() {
         document.getElementsByClassName("titles")[0].style.display="block";
         document.getElementsByClassName("titles")[1].style.display="block";
         if(myArr.count!=null&&myArr.count!=undefined&&myArr.count!=0){
-		    if(window.screen.width<=499)
-				number=3
-			else if(window.screen.width<=768&&window.screen.width>=500)
-				number=4;
-			else
-				number=6;
 		    listEvents(myArr);
         }
         else{
@@ -26,8 +20,6 @@ xmlhttp.onreadystatechange = function() {
         }
 
     }
-    //else
-    	//alert("Server error");
 };
 
 xmlhttp.open("GET",request_url, true);
@@ -49,8 +41,6 @@ xmlhttp.onreadystatechange = function() {
         if(myArr.count!=null&&myArr.count!=undefined&&myArr.count!=0)
 	    	listSeminars(myArr);
     }
-    //else
-    	//alert("Server error");
 };
 
 xmlhttp.open("GET",request_url, true);
@@ -266,6 +256,7 @@ function listEvents(jsonData,all){
 
 function listSeminars(jsonData){
 	document.getElementById("container2").style.display="block";
+	document.getElementById("no_events").style.display="none";
 	var n_events=jsonData.count;
 	var n_pages = Math.ceil(n_events/number);
 	const pages = document.getElementById('page_s_list');

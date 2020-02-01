@@ -1,7 +1,7 @@
 localStorage.setItem("page_perf_to_display",1);
 localStorage.setItem("page_perf_s_to_display",1);
 localStorage.setItem("page_cart_to_display",1);
-var number = 9;
+var number = 3;
 function refresh(type){
 	var url_string = window.location.href;
 	var url = new URL(url_string);
@@ -43,12 +43,6 @@ xmlhttp.onreadystatechange = function() {
         else if(type==null||type.localeCompare("all")==0){
         	document.getElementsByClassName("titles")[0].style.display="block";
         	document.getElementsByClassName("titles")[1].style.display="block";
-        	if(window.screen.width<=499)
-				number=3
-			else if(window.screen.width<=768&&window.screen.width>=500)
-				number=4;
-			else
-				number=6;
 	        list(myArr,true);
         }
         else
