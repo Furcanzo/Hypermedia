@@ -83,7 +83,7 @@ exports.artisticEventGetCalendar =  (req, res, next)=>{
 				error.status = 500;
 				return next(error);
 			}
-			client.query('SELECT distinct date(day)::text FROM seminars', (err, resultS)=> {
+			client.query('SELECT distinct date(s.day)::text FROM artistic_events a JOIN seminars s ON a.seminar_id = s.id', (err, resultS)=> {
 				if (err) {
 					const error = new Error('Query error');
 					error.status = 500;
@@ -235,7 +235,7 @@ exports.artisticEventGetByType = (req, res, next)=>{
 				}
 			
 				const response = {
-					count: result.rows.length,
+					countAE: result.rows.length,
 					artistic_events: result.rows.map(row =>{
 						return {
 							name: row.name,
@@ -319,8 +319,8 @@ exports.artisticEventPost = (req, res, next)=>{
 					error.status = 500;
 					return next(error);
 				}
-				client.query('INSERT INTO artistic_events (name, fact_sheet, day, abstract, seminar_id)' +
-					'VALUES(\''+req.body.name+'\',\'' +req.body.fact_sheet +'\',\''+req.body.day+'\',\''+req.body.abstract+'\','+ results.rows[0].id +')', (err, result)=>{
+				client.query('INSERT INTO artistic_events (name, fact_sheet, day, abstract, seminar_id, type)' +
+					'VALUES(\''+req.body.name+'\',\'' +req.body.fact_sheet +'\',\''+req.body.day+'\',\''+req.body.abstract+'\','+ results.rows[0].id +', \''+req.body.type+'\')', (err, result)=>{
 					if (err){
 						const error = new Error('Query error');
 						error.status = 500;
@@ -333,8 +333,8 @@ exports.artisticEventPost = (req, res, next)=>{
 			});
 		}
 		else{
-			client.query('INSERT INTO artistic_events (name, fact_sheet, day, abstract)' +
-				'VALUES(\''+req.body.name+'\',\'' +req.body.fact_sheet +'\',\''+req.body.day+'\',\''+req.body.abstract+'\')', (err, result)=>{
+			client.query('INSERT INTO artistic_events (name, fact_sheet, day, abstract, type)' +
+				'VALUES(\''+req.body.name+'\',\'' +req.body.fact_sheet +'\',\''+req.body.day+'\',\''+req.body.abstract+'\', \''+req.body.type+'\')', (err, result)=>{
 				if (err){
 					const error = new Error('Query error');
 					error.status = 500;
