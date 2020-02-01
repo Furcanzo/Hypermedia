@@ -178,13 +178,7 @@ exports.getStaticAssets = (req, res, next)=>{
                     url: connect.root + 'photos/logo'
                 }
             },
-            {
-                name: "decorativeLine",
-                request: {
-                    type: 'GET',
-                    url: connect.root + 'photos/decorativeLine'
-                }
-            },
+
             {
                 name: "icon",
                 request: {
@@ -204,13 +198,6 @@ exports.getStaticAssets = (req, res, next)=>{
                 request: {
                     type: 'GET',
                     url: connect.root + 'photos/genericPerformer'
-                }
-            },
-            {
-                name: "genericSeminar",
-                request: {
-                    type: 'GET',
-                    url: connect.root + 'photos/genericSeminar'
                 }
             }
 
