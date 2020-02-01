@@ -6,7 +6,7 @@
 }
 .top_part{
 	display: inline-flex;
-	margin-top: 5em;
+	margin-top: 7em;
 	margin-right: 2%;
 	margin-left:2%;
 }
@@ -19,60 +19,320 @@
 	margin: 0;
 	width: 90%!important;
 }
-
-.artistic_events{
+.box_link:hover{
+    text-decoration: none;
+}
+.title_box{
+    width: 40%;
+    float: left;
+    margin: 5%;
+    background-color: #F0F0F0;
+    box-shadow: 0em 0em 1em 0.3em #000000;
+}
+.title_box:hover{
+    box-shadow: 0em 0em 1em 1em #000000;
+}
+.box_img{
     width: 100%;
-}
-.artistic_single_event{
-    width: 21%;
-    margin: 2%;
-    float: left;    
-    border:double;
-    border-color: #75151e;
-    border-width: 1em;
-    background-color: #a5eaff;
-}
-#event_img{
-    width: 100%;
-}
-#event_img:hover{
-    box-shadow: 0.1em 0.1em 1.5em 0.1em deepskyblue;
 }
 .see_more_button{
-    width: 21%;
-    float: left;
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-top: 10%;
-    margin-bottom: 10%;
+    width: 96%;
+    text-align: center;
+    margin: 2%;
+    border-top-style: solid;
+    border-top-color: #C8C8C8;  
 }
 .see_more{
     color:#75151e;
     text-decoration: none;
-    font-size: 3em;
-}
-.see_more:hover{
-    text-decoration: none;
     font-weight: bold;
-    color:#75151e;
+    font-size: 180%;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
 }
-
 .content_part{
-	width: 90%;
-	height: 85%;
+	width: 46%;
 	float: left;
-	margin:5%;
+	margin:2%;
     text-align: center;
 }
-#line_img{
+.day_part{
+    width: 46%;
+    margin: 2%;
+    float: left;
+    text-align: center;
+}
+#buy_box{
+    float: left;
+    text-align: center;
+    width: 90%;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: #F0F0F0;
+    box-shadow: 0em 0em 1em 0.3em #000000;
+}
+#buy_title{
+    margin-top:2%;
+    margin-bottom: 2%;
+    font-size: 3em;
+}
+.buy_ticket{
+    margin: 3%;
+    color:#75151e;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 2em;
+}
+.today{
+    width: 100%;
+    margin-top: 5%;
+}
+#calendar{
+    width: 70%;
+    float: left;
+    margin: 15%;
+    margin-top: 10%;
+    text-align: center;
+}
+#today_event{
     width: 50%;
+    color: white;
+    font-size: 2em;
+    border-color: #F0F0F0;
+    background-color: #75151e;
+    box-shadow: 0em 0em 0.5em 0.3em #000000;
+}
+#today_event:hover{
+    box-shadow: 0em 0em 0.5em 0.5em #000000;
+}
+.container{
+    margin-top: 5%;
 }
 
-.events_titles{
-    font-size: 3vw;
-	text-align: center;
-	color: black;
-	margin-bottom: 0.5%;
-	margin-left: 2%;
-	margin-right: 2%;
+.responsive-calendar{
+    box-shadow: 0em 0em 1em 0.3em #000000;
+    color: white;
+}
+.day-headers{
+    background-color: black;
+    color:white;
+}
+.days{
+    background-color: white;
+}
+.controls{
+    background-color: #75151e;
+}
+.btn-primary{
+    background-color: #75151e;
+    border-color: black;
+}
+.description{
+    width: 96%;
+    margin: 2%;
+    margin-top: 0;
+    font-size: 1.7em;
+    color:white;
+    text-align: center;
+    background-color: rgb(80,80,80,0.5);
+}
+
+@media (max-width: 1200px) and (min-width: 1001px) {
+    .see_more{
+        font-size: 150%;
+    }
+    #buy_title{
+        font-size: 2.5em;
+    }
+}
+@media (max-width: 1000px) and (min-width: 768px) {
+    .content_part{
+        width: 90%;
+        margin:5%;
+    }
+    .see_more{
+        font-size: 180%;
+    }
+    #buy_title{
+        font-size: 2em;
+    }
+    .buy_ticket{
+        font-size: 1em;
+    }
+    .day_part{
+        width: 90%;
+        margin: 5%;
+        float: left;
+        text-align: center;
+    }
+    #calendar{
+        width: 100%;
+        margin:0;
+        margin-top: 5%;
+    }
+    .description{
+        font-size: 1.5em;
+        color:black;
+        margin-top: 2%;
+        background-color: rgb(80,80,80,0);
+    }
+    #today_event{
+        font-size: 1.5em;
+    }
+    #pull-right-c{
+        float: right!important;
+    }
+}
+@media (max-width: 767px) and (min-width: 600px) {
+    .content_part{
+        width: 90%;
+        margin:5%;
+    }
+    .title_box{
+        width: 90%;
+        float: none;
+    }
+    .box_img{
+        width: 30%;
+        float: left;
+    }
+    .see_more_button{
+        width: 66%;
+        float: left;
+        border-top-style: none;
+    }
+    #buy_title{
+        font-size: 2em;
+    }
+    .buy_ticket{
+        font-size: 1em;
+    }
+    .day_part{
+        width: 90%;
+        margin: 5%;
+        float: left;
+        text-align: center;
+    }
+    #calendar{
+        width: 100%;
+        margin:0;
+        margin-top: 5%;
+    }
+    .description{
+        font-size: 1.5em;
+        color:black;
+        margin-top: 2%;
+        background-color: rgb(80,80,80,0);
+    }
+    #today_event{
+        font-size: 1.5em;
+    }
+    #pull-right-c{
+        float: right!important;
+    }
+}
+@media (max-width: 599px) and (min-width: 490px) {
+    .content_part{
+        width: 90%;
+        margin:5%;
+    }
+    .title_box{
+        width: 90%;
+        float: none;
+    }
+    .box_img{
+        width: 30%;
+        float: left;
+    }
+    .see_more{
+        font-size: 1.5em;
+    }
+    .see_more_button{
+        width: 66%;
+        float: left;
+        border-top-style: none;
+    }
+    #buy_title{
+        font-size: 1em;
+    }
+    .buy_ticket{
+        font-size: 0.7em;
+    }
+    .day_part{
+        width: 90%;
+        margin: 5%;
+        float: left;
+        text-align: center;
+    }
+    #calendar{
+        width: 100%;
+        margin:0;
+        margin-top: 5%;
+    }
+    .description{
+        font-size: 1em;
+        color:black;
+        margin-top: 2%;
+        background-color: rgb(80,80,80,0);
+    }
+    #today_event{
+        font-size: 1.5em;
+    }
+    #pull-right-c{
+        float: right!important;
+    }
+
+}
+@media (max-width: 489px){
+    .content_part{
+        width: 90%;
+        margin:5%;
+    }
+    .title_box{
+        width: 90%;
+        float: none;
+    }
+    .box_img{
+        width: 30%;
+        float: left;
+    }
+    .see_more{
+        font-size: 1em;
+    }
+    .see_more_button{
+        width: 66%;
+        float: left;
+        border-top-style: none;
+    }
+    #buy_title{
+        font-size: 1em;
+    }
+    .buy_ticket{
+        font-size: 0.7em;
+    }
+    .day_part{
+        width: 90%;
+        margin: 5%;
+        float: left;
+        text-align: center;
+    }
+    #calendar{
+        width: 100%;
+        margin:0;
+        margin-top: 5%;
+    }
+    .description{
+        font-size: 1em;
+        color:black;
+        margin-top: 2%;
+        background-color: rgb(80,80,80,0);
+    }
+    #today_event{
+        font-size: 1.5em;
+    }
+    #pull-right-c{
+        float: right!important;
+    }
 }

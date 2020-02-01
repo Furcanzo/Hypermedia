@@ -5,130 +5,96 @@
 <!--Bootstrap import-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--Bootstrap import end-->
 
-<link rel="icon" href="D:\Università\Hypermedia Applications\Progetto\public\assets\img\favicon.ico">
-<link rel="stylesheet" type="text/css" href="D:\Università\Hypermedia Applications\Progetto\public\pages\css\pages.css">
-<link rel="stylesheet" type="text/css" href="D:\Università\Hypermedia Applications\Progetto\public\assets\css\page_style.css">
 
+<link rel="stylesheet" type="text/css" href="../assets\css\performers_page.css">
+<link rel="stylesheet" type="text/css" href="../assets\css\pages_style.css">
+<link id="favicon" rel="icon" href="./assets/img/favicon.ico">
+<title>Performers</title>
 </head>
 
-<body>
+<body onload="active(), login_nav()">
   <!-- Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark clearfix">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="navbarColor02">
+    <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><a class="nav-link" href="D:\Università\Hypermedia Applications\Progetto\public\index.html">Home<span class="sr-only">(current)</span></a></li>
-          <li class="nav-item"><a class="nav-link" href="D:\Università\Hypermedia Applications\Progetto\public\pages\artistic_events_page.html">Artistic Events</a></li>
-          <li class="nav-item"><a class="nav-link  nav-current" href="D:\Università\Hypermedia Applications\Progetto\public\pages\performers_page.html">Performers</a></li>
-          <li class="nav-item"><a class="nav-link" href="D:\Università\Hypermedia Applications\Progetto\public\pages\seminars_page.html">Seminars</a></li>
-          <li class="nav-item"><a class="nav-link" href="D:\Università\Hypermedia Applications\Progetto\public\pages\contact_us_page.html">Contact us</a></li>
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home<span class="sr-only">(current)</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="./artistic_events_page.html">Artistic Events</a></li>
+          <li class="nav-item"><a class="nav-link  nav-current" href="./performers_page.html">Performers</a></li>
+          <li class="nav-item"><a class="nav-link" href="./contact_us_page.html">Contact us</a></li>
         </ul>
         <ul class="nav pull-right">
-              <li><a href="Pages\Login\index.html">Sign Up</a></li>
-              <li><a href="Pages\Login\index.html">Sign In</a></li>
+              <li class="nav-item"><a class="nav-link" id="signin_nav" href="./login_page.html">Sign In</a></li>
+              <li class="nav-item"><span class="nav-link" id="email_nav"></span></li>
+              <li class="nav-item"><a class="nav-link" id="logout_nav" onclick="logout()" href="../index.html">Logout</a></li>
         </ul>
 
-        <a class= "shopping_cart" href="#" title="Pre-order your tickets here"><i class="fa fa-ticket" aria-hidden="true"></i></a>
+        <a class= "shopping_cart" id="shopping_cart" href="./shopping_cart_page.html" title="Your tickets"><i class="fa fa-ticket" aria-hidden="true"></i></a>
       </div>
-    </nav>
-     <!-- Page-->
-    <div id="page">
-      <div class="content_part">
-        <img id="line_img" src="D:\Università\Hypermedia Applications\Progetto\public\assets\img\decorative_line.png">
-        <h1 class="events_titles"> Performers </h1>
-        <div class="artistic_events">
-          <div class="artistic_single_event">
-            <a class="event_img_link" href=""><img id="event_img" src="D:\Università\Hypermedia Applications\Progetto\public\assets\img\image_placeholder.jpg"></a>
-            <div class="event_info">
-              <h2 class="event_name"> Nome </h2>
-              <p class="event_information"> Bio </p>
-            </div>
-          </div>
-          <div class="artistic_single_event">
-            <a class="event_img_link" href=""><img id="event_img" src="D:\Università\Hypermedia Applications\Progetto\public\assets\img\image_placeholder.jpg"></a>
-            <div class="event_info">
-              <h2 class="event_name"> Nome </h2>
-              <p class="event_information"> Bio </p>
-            </div>
-          </div>
-          <div class="artistic_single_event">
-            <a class="event_img_link" href=""><img id="event_img" src="D:\Università\Hypermedia Applications\Progetto\public\assets\img\image_placeholder.jpg"></a>
-            <div class="event_info">
-              <h2 class="event_name"> Nome </h2>
-              <p class="event_information"> Bio </p>
-            </div>
-          </div>
+
+  </nav>
+   <!-- Page-->
+  <div id="page" class="clearfix">
+    <div class="content_part clearfix">
+        <img id="line_img">
+        <h1 class="performers_titles"> Performers </h1>
+        
+        <div class="dropdown">
+          <div id="type_button"></div>
+          <ul class="performers_types">
+            <li onclick="refresh('all')" class="type active" id="all">All</li>
+            <li onclick="refresh('artists')" class="type" id="artists">Artists</li>
+            <li onclick="refresh('companies')" class="type" id="companies">Companies</li>
+          </ul>
         </div>
-        <div class="artistic_events">
-          <div class="artistic_single_event">
-            <a class="event_img_link" href=""><img id="event_img" src="D:\Università\Hypermedia Applications\Progetto\public\assets\img\image_placeholder.jpg"></a>
-            <div class="event_info">
-              <h2 class="event_name"> Nome </h2>
-              <p class="event_information"> Bio </p>
-            </div>
+        <div id="container1" class="clearfix">
+          <div id="artists_performers">
+            <h1 class="titles"> Artists </h1>
           </div>
-          <div class="artistic_single_event">
-            <a class="event_img_link" href=""><img id="event_img" src="D:\Università\Hypermedia Applications\Progetto\public\assets\img\image_placeholder.jpg"></a>
-            <div class="event_info">
-              <h2 class="event_name"> Nome </h2>
-              <p class="event_information"> Bio </p>
-            </div>
+          <div class="dropdown1" id="n_pages">
+            <div id="page_button"></div>
+            <ul class="clearfix" id="page_list"></ul>
           </div>
-          <div class="artistic_single_event">
-            <a class="event_img_link" href=""><img id="event_img" src="D:\Università\Hypermedia Applications\Progetto\public\assets\img\image_placeholder.jpg"></a>
-            <div class="event_info">
-              <h2 class="event_name"> Nome </h2>
-              <p class="event_information"> Bio </p>
-            </div>
-          </div>
-          <div class="artistic_events">
-            <div class="artistic_single_event">
-              <a class="event_img_link" href=""><img id="event_img" src="D:\Università\Hypermedia Applications\Progetto\public\assets\img\image_placeholder.jpg"></a>
-              <div class="event_info">
-                <h2 class="event_name"> Nome </h2>
-                <p class="event_information"> Bio </p>
-              </div>
-            </div>
-            <div class="artistic_single_event">
-              <a class="event_img_link" href=""><img id="event_img" src="D:\Università\Hypermedia Applications\Progetto\public\assets\img\image_placeholder.jpg"></a>
-              <div class="event_info">
-                <h2 class="event_name"> Nome </h2>
-                <p class="event_information"> Bio </p>
-              </div>
-            </div>
-            <div class="artistic_single_event">
-              <a class="event_img_link" href=""><img id="event_img" src="D:\Università\Hypermedia Applications\Progetto\public\assets\img\image_placeholder.jpg"></a>
-              <div class="event_info">
-                <h2 class="event_name"> Nome </h2>
-                <p class="event_information"> Bio </p>
-              </div>
-            </div>
-          </div>
+          <!--<div id="n_pages">
+            <div class="clearfix" id="page_list"></div>
+          </div>-->
         </div>
-    </div>
+        <div id="container2" class="clearfix">
+          <div id="companies_performers">
+            <h1 class="titles"> Companies </h1>
+          </div>
+          <div class="dropdown2" id="n_pages">
+            <div id="page_s_button"></div>
+            <ul class="clearfix" id="page_s_list"></ul>
+          </div>
+          <!--<div id="n_s_pages">
+            <div class="clearfix" id="page_s_list"></div>
+          </div>-->
+        </div>
+      </div>
   </div>
-  
   <footer>
     <div class="footer_license">
-      <p class="footer_license_text"> All rights reserved by Matteo Baragioli, Roberto Buratti, Paolo Capra</p>
+      <p class="footer_license_text"> &copy All rights reserved by Matteo Baragioli, Roberto Buratti, Paolo Capra</p>
     </div>
     <div class="footer_info">
-      <a class="footer_info_link" href="D:\Università\Hypermedia Applications\Progetto\public\pages\artistic_events_page.html"> Artistic Events </a>
+      <a class="footer_info_link" href=".\artistic_events_page.html"> Artistic Events </a>
       <p class="footer_separator"> | </p>
-      <a class="footer_info_link" href="D:\Università\Hypermedia Applications\Progetto\public\pages\performers_page.html"> Performers </a>
+      <a class="footer_info_link" href=".\performers_page.html"> Performers </a>
       <p class="footer_separator"> | </p>
-      <a class="footer_info_link" href="D:\Università\Hypermedia Applications\Progetto\public\pages\seminars_page.html"> Seminars </a>
-      <p class="footer_separator"> | </p>
-      <a class="footer_info_link" href="D:\Università\Hypermedia Applications\Progetto\public\pages\contact_us_page.html"> Contact us </a>
+      <a class="footer_info_link" href=".\contact_us_page.html"> Contact us </a>
     </div>
   </footer>
-
-
+<script type='text/javascript' src='../assets\js\performers.js'></script>
+<script type='text/javascript' src='..\assets\js\login.js'></script>
+<script type='text/javascript' src="..\assets/js/images.js"></script>
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
