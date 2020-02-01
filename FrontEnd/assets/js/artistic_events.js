@@ -117,6 +117,7 @@ function list(jsonData,all){
 		 	let newLink = document.createElement('a'); //create a a
 		 	let newDivDate = document.createElement('div'); // create a date div
 		 	let newDateSpan = document.createElement('span'); //create a date span
+		 	let newCont=document.createElement('div'); //create a image container
 		 	let newImage = document.createElement('img'); //create an image
 		 	let newInfoDiv = document.createElement('div'); //create an info div
 		 	let newTitleSpan = document.createElement('span'); //create a title span
@@ -201,9 +202,14 @@ function list(jsonData,all){
 			//span date
 			newDateSpan.className='date';
 			newDateSpan.textContent=day+" "+month+" "+year;
+			//image container
+			newCont.className="img_container";
+
+
+
 			//image
 			newImage.className='box_img';
-			newImage.setAttribute('src','http://localhost:3000/photos/preview/artisticEvent/'+jsonData.artistic_events[i].id);
+			newImage.setAttribute('src',localStorage.getItem("server_url")+'photos/preview/artisticEvent/'+jsonData.artistic_events[i].id);
 
 			//info div
 			newInfoDiv.className='event_info';
@@ -218,7 +224,8 @@ function list(jsonData,all){
 		 	newDiv.appendChild(newLink);
 		 	newLink.appendChild(newDivDate);
 		 	newDivDate.appendChild(newDateSpan);
-		 	newLink.appendChild(newImage);
+		 	newLink.appendChild(newCont);
+		 	newCont.appendChild(newImage);
 		 	newLink.appendChild(newInfoDiv);
 		 	newInfoDiv.appendChild(newTitleSpan);
 
@@ -264,6 +271,7 @@ function listSeminars(jsonData){
 		 	let newLink = document.createElement('a'); //create a a
 		 	let newDivDate = document.createElement('div'); // create a date div
 		 	let newDateSpan = document.createElement('span'); //create a date span
+		 	let newCont=document.createElement('div'); //create a image container
 		 	let newImage = document.createElement('img'); //create an image
 		 	let newInfoDiv = document.createElement('div'); //create an info div
 		 	let newTitleSpan = document.createElement('span'); //create a title span
@@ -344,10 +352,11 @@ function listSeminars(jsonData){
 			//span date
 			newDateSpan.className='date';
 			newDateSpan.textContent=day+" "+month+" "+year;
-
+			//image container
+			newCont.className="img_container";
 			//image
 			newImage.className='box_img';
-			newImage.setAttribute('src','http://localhost:3000/photos/preview/seminar/'+jsonData.seminars[i].id);
+			newImage.setAttribute('src',localStorage.getItem("server_url")+'photos/preview/seminar/'+jsonData.seminars[i].id);
 
 			//info div
 			newInfoDiv.className='event_info';
@@ -362,7 +371,8 @@ function listSeminars(jsonData){
 		 	newDiv.appendChild(newLink);
 		 	newLink.appendChild(newDivDate);
 		 	newDivDate.appendChild(newDateSpan);
-		 	newLink.appendChild(newImage);
+		 	newLink.appendChild(newCont);
+		 	newCont.appendChild(newImage);
 		 	newLink.appendChild(newInfoDiv);
 		 	newInfoDiv.appendChild(newTitleSpan);
 

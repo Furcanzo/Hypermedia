@@ -14,7 +14,7 @@ function refresh_page(){
 function removeTicket(id){
 	var token = sessionStorage.getItem("token");
 	var xmlhttp = new XMLHttpRequest();
-	var url= "http://localhost:3000/registration/"+id;
+	var url= localStorage.getItem("server_url")+"registration/"+id;
 	xmlhttp.open("DELETE", url, true);
 	xmlhttp.setRequestHeader("authorization","bearer "+token);
 	xmlhttp.onreadystatechange = function() {
@@ -30,7 +30,7 @@ function removeTicket(id){
 function tickets(){
 	var token = sessionStorage.getItem("token");
 	var xmlhttp = new XMLHttpRequest();
-	var url= "http://localhost:3000/registration/";
+	var url= localStorage.getItem("server_url")+"registration/";
 	xmlhttp.open("GET", url, true);
 	xmlhttp.setRequestHeader("authorization","bearer "+token);
 	xmlhttp.onreadystatechange = function() {
@@ -85,6 +85,7 @@ function list(jsonData){
 		 	let newLink = document.createElement('a'); //create a a
 		 	let newDivDate = document.createElement('div'); // create a date div
 		 	let newDateSpan = document.createElement('span'); //create a date span
+		 	let newCont=document.createElement('div'); //create a image container
 		 	let newImage = document.createElement('img'); //create an image
 		 	let newInfoDiv = document.createElement('div'); //create an info div
 		 	let newTitleSpan = document.createElement('span'); //create a title span
@@ -114,6 +115,8 @@ function list(jsonData){
 			//span date
 			newDateSpan.className='date';
 			newDateSpan.id='date'+i;
+			//image container
+			newCont.className="img_container";
 			//image
 			newImage.className='box_img';
 			newImage.id='box_img'+i;
@@ -136,7 +139,8 @@ function list(jsonData){
 		 	newDiv.appendChild(newLink);
 		 	newLink.appendChild(newDivDate);
 		 	newDivDate.appendChild(newDateSpan);
-		 	newLink.appendChild(newImage);
+		 	newLink.appendChild(newCont);
+		 	newCont.appendChild(newImage);
 		 	newLink.appendChild(newInfoDiv);
 		 	newInfoDiv.appendChild(newTitleSpan);
 		 	container.appendChild(newButton);
@@ -274,7 +278,7 @@ function getImage(jsonData,i){
 	xmlhttp1.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
 	        var myArr = JSON.parse(this.responseText);
-	    	document.getElementById("box_img"+i).setAttribute('src','http://localhost:3000/photos/preview/artisticEvent/'+myArr.artistic_events[0].id);
+	    	document.getElementById("box_img"+i).setAttribute('src',localStorage.getItem("server_url")+'photos/preview/artisticEvent/'+myArr.artistic_events[0].id);
 	    }     
 	}
 	xmlhttp1.open("GET", url, true);

@@ -89,7 +89,7 @@ function single_page(){
 
 
 		var xmlhttp = new XMLHttpRequest();
-		var url = "http://localhost:3000/photos/requestList/artisticEvent/"+jsonData.artistic_events[0].id;
+		var url = localStorage.getItem("server_url")+"photos/requestList/artisticEvent/"+jsonData.artistic_events[0].id;
 		xmlhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) {
 		        var myArr = JSON.parse(this.responseText);
@@ -334,7 +334,7 @@ ticket.onclick=function(){
 	var id_request = url.searchParams.get("id");
 	var token = sessionStorage.getItem("token");
 	var xmlhttp = new XMLHttpRequest();
-	var url= "http://localhost:3000/registration";
+	var url= localStorage.getItem("server_url")+"registration";
 	xmlhttp.open("POST", url, true);
 	xmlhttp.setRequestHeader("Content-type", "application/json");
 	xmlhttp.setRequestHeader("authorization","bearer "+token);

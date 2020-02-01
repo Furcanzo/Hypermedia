@@ -31,7 +31,7 @@ var url_string = window.location.href;
 var url1 = new URL(url_string);
 var type = url1.searchParams.get("type");
 var xmlhttp = new XMLHttpRequest();
-var url= "http://localhost:3000/performer/";
+var url= localStorage.getItem("server_url")+"performer/";
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myArr = JSON.parse(this.responseText);
@@ -110,6 +110,7 @@ function list(jsonData,all){
     	//console.log(jsonData.artistic_events[i].name);
 	 	let newDiv = document.createElement('div');   //create a div box
 	 	let newLink = document.createElement('a'); //create a a
+	 	let newCont=document.createElement('div'); //create a image container
 	 	let newImage = document.createElement('img'); //create an image
 	 	let newInfoDiv = document.createElement('div'); //create an info div
 	 	let newTitleSpan = document.createElement('span'); //create a title span
@@ -124,12 +125,14 @@ function list(jsonData,all){
 		newLink.identificator=jsonData.artists[i].id;
 		newLink.onclick=function (){
 			localStorage.setItem("request_type",jsonData.artists[this.number].request.type);
-			localStorage.setItem("request_perf_link","http://localhost:3000/artist/");
+			localStorage.setItem("request_perf_link",localStorage.getItem("server_url")+"artist/");
 			location.href = 'single_performer.html?type=artist&id='+this.identificator;
 		};
+		//image container
+		newCont.className="img_container";
 		//image
 		newImage.className='box_img';
-		newImage.setAttribute('src','http://localhost:3000/photos/preview/artist/'+jsonData.artists[i].id);
+		newImage.setAttribute('src',localStorage.getItem("server_url")+'photos/preview/artist/'+jsonData.artists[i].id);
 
 		//info div
 		newInfoDiv.className='performer_info';
@@ -142,7 +145,9 @@ function list(jsonData,all){
 	 	//document.body.appendChild(newElement);
 	 	myList.appendChild(newDiv);
 	 	newDiv.appendChild(newLink);
-	 	newLink.appendChild(newImage);
+	 	newLink.appendChild(newCont);
+		newLink.appendChild(newCont);
+		newCont.appendChild(newImage);
 	 	newLink.appendChild(newInfoDiv);
 	 	newInfoDiv.appendChild(newTitleSpan);
 
@@ -178,6 +183,7 @@ function listCompanies(jsonData){
 	for (var i = 0; i < jsonData.companies.length; i++) {
 	 	let newDiv = document.createElement('div');   //create a div box
 	 	let newLink = document.createElement('a'); //create a a
+	 	let newCont=document.createElement('div'); //create a image container
 	 	let newImage = document.createElement('img'); //create an image
 	 	let newInfoDiv = document.createElement('div'); //create an info div
 	 	let newTitleSpan = document.createElement('span'); //create a title span
@@ -192,12 +198,14 @@ function listCompanies(jsonData){
 		newLink.identificator=jsonData.companies[i].id;
 		newLink.onclick=function (){
 			localStorage.setItem("request_type",jsonData.companies[this.number].request.type);
-			localStorage.setItem("request_perf_link","http://localhost:3000/company/");
+			localStorage.setItem("request_perf_link",localStorage.getItem("server_url")+"company/");
 			location.href = 'single_performer.html?type=company&id='+this.identificator;
 		};
+		//image container
+		newCont.className="img_container";
 		//image
 		newImage.className='box_img';
-		newImage.setAttribute('src','http://localhost:3000/photos/preview/company/'+jsonData.companies[i].id);
+		newImage.setAttribute('src',localStorage.getItem("server_url")+'photos/preview/company/'+jsonData.companies[i].id);
 
 		//info div
 		newInfoDiv.className='performer_info';
@@ -210,7 +218,8 @@ function listCompanies(jsonData){
 	 	//document.body.appendChild(newElement);
 	 	myList.appendChild(newDiv);
 	 	newDiv.appendChild(newLink);
-	 	newLink.appendChild(newImage);
+	 	newLink.appendChild(newCont);
+		newCont.appendChild(newImage);
 	 	newLink.appendChild(newInfoDiv);
 	 	newInfoDiv.appendChild(newTitleSpan);
 
