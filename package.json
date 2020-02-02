@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "An api for the hypepperoni festival website",
   "main": "index.js",
+  "engines": {
+    "node": "10.15.2"
+  },
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
