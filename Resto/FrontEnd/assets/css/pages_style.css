@@ -15,6 +15,9 @@ body{
 	float: left;
 	z-index: 1;
 }
+.widget-wrap {
+	background-attachment: scroll;
+}
 
 /*nav*/
 .navbar{
@@ -155,5 +158,10 @@ footer{
 	}
 	.footer_separator{
 		font-size: 0;
+	}
+	#ci-hero-11 .widget-wrap , #ci-hero-12 .widget-wrap {
+
+		background-attachment: initial;
+
 	}
 }
