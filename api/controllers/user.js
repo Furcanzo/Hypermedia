@@ -11,17 +11,20 @@ exports.userGetAll = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		client.query('SELECT * FROM users_web', (err, result)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			res.status(200).json({
 				users: result.rows
 			});
+			client.end();
 			
 		});
 	});
@@ -35,12 +38,14 @@ exports.userSignUp = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		bcrypt.hash(req.body.password, 10, (err, hash)=>{
 			if (err){
 				const error = new Error('Hashing error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}else {
 				client.query('INSERT INTO users_web (email, password, admin)' +
@@ -48,11 +53,13 @@ exports.userSignUp = (req, res, next)=>{
 					if (err){
 						const error = new Error('Email already registered');
 						error.status = 401;
+						client.end();
 						return next(error);
 					}
 					res.status(201).json({
 						message: 'user added'
 					});
+					client.end();
 				});
 			}
 		});
@@ -68,12 +75,14 @@ exports.userLogin = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		client.query('SELECT * FROM users_web WHERE email = \''+req.body.eMail +'\'' , (err, result)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			if(result.rows.length>0) {
@@ -94,15 +103,18 @@ exports.userLogin = (req, res, next)=>{
 							token: token
 						};
 						return res.status(200).json(response);
+						client.end();
 					} else {
 						const error = new Error('Authentication failed');
 						error.status = 401;
+						client.end();
 						return next(error);
 					}
 				});
 			}else{
 				const error = new Error('Authentication failed');
 				error.status = 401;
+				client.end();
 				return next(error);
 			}
 		});
@@ -118,12 +130,14 @@ exports.userCreateAdmin = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		bcrypt.hash(req.body.password, 10, (err, hash)=>{
 			if (err){
 				const error = new Error('Hashing error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}else {
 				client.query('INSERT INTO users_web (email, password, admin)' +
@@ -131,11 +145,13 @@ exports.userCreateAdmin = (req, res, next)=>{
 					if (err){
 						const error = new Error('Email already registered');
 						error.status = 401;
+						client.end();
 						return next(error);
 					}
 					res.status(201).json({
 						message: 'admin added'
 					});
+					client.end();
 				});
 			}
 		});
@@ -151,23 +167,27 @@ exports.userChangePassword = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		bcrypt.hash(req.body.password, 10, (err, hash)=>{
 			if (err){
 				const error = new Error('Hashing error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}else {
 				client.query('UPDATE users_web SET password = \''+hash+'\' WHERE id = '+req.userData.id, (err, result)=>{
 					if (err){
 						const error = new Error('Query error');
 						error.status = 500;
+						client.end();
 						return next(error);
 					}
 					res.status(201).json({
 						message: 'Password changed'
 					});
+					client.end();
 				});
 			}
 		});

@@ -9,12 +9,14 @@ exports.artisticEventGetAll = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		client.query('SELECT name, day::text,id, type FROM artistic_events ORDER BY day', (err, resultAE)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 
@@ -22,6 +24,7 @@ exports.artisticEventGetAll = (req, res, next)=>{
 				if (err) {
 					const error = new Error('Query error');
 					error.status = 500;
+					client.end();
 					return next(error);
 				}
 
@@ -62,6 +65,7 @@ exports.artisticEventGetAll = (req, res, next)=>{
 
 				};
 				res.status(200).json(response);
+				client.end();
 			});
 		});
 	});
@@ -75,18 +79,21 @@ exports.artisticEventGetCalendar =  (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		client.query('SELECT distinct date(day)::text FROM artistic_events', (err, resultAE)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			client.query('SELECT distinct date(s.day)::text FROM artistic_events a JOIN seminars s ON a.seminar_id = s.id', (err, resultS)=> {
 				if (err) {
 					const error = new Error('Query error');
 					error.status = 500;
+					client.end();
 					return next(error);
 				}
 				const response = {
@@ -114,6 +121,7 @@ exports.artisticEventGetCalendar =  (req, res, next)=>{
 				};
 
 				res.status(200).json(response);
+				client.end();
 			});
 		});
 	});
@@ -127,6 +135,7 @@ exports.artisticEventGetByID = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		const id = req.params.artisticEventId;
@@ -134,6 +143,7 @@ exports.artisticEventGetByID = (req, res, next)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			client.query('SELECT P.events_id, A.name AS artist_name, A.id AS artist_id, C.name AS companies_name, C.id AS companies_id\n' +
@@ -144,6 +154,7 @@ exports.artisticEventGetByID = (req, res, next)=>{
 				if (err){
 					const error = new Error('Query error');
 					error.status = 500;
+					client.end();
 					return next(error);
 				}
 
@@ -181,6 +192,7 @@ exports.artisticEventGetByID = (req, res, next)=>{
 					})
 				};
 				res.status(200).json(response);
+				client.end();
 			});
 		});
 	});
@@ -194,6 +206,7 @@ exports.artisticEventGetByType = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		const type = req.params.artisticEventType;
@@ -202,6 +215,7 @@ exports.artisticEventGetByType = (req, res, next)=>{
 				if (err){
 					const error = new Error('Query error');
 					error.status = 500;
+					client.end();
 					return next(error);
 				}
 				const response = {
@@ -224,6 +238,7 @@ exports.artisticEventGetByType = (req, res, next)=>{
 
 				};
 				res.status(200).json(response);
+				client.end();
 			});
 		}
 		else{
@@ -231,6 +246,7 @@ exports.artisticEventGetByType = (req, res, next)=>{
 				if (err){
 					const error = new Error('Query error');
 					error.status = 500;
+					client.end();
 					return next(error);
 				}
 			
@@ -255,6 +271,7 @@ exports.artisticEventGetByType = (req, res, next)=>{
 				};
 
 				res.status(200).json(response);
+				client.end();
 			});
 		}
 	});
@@ -268,6 +285,7 @@ exports.artisticEventGetByDay = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		const date = req.params.date;
@@ -275,6 +293,7 @@ exports.artisticEventGetByDay = (req, res, next)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			const response = {
@@ -298,6 +317,7 @@ exports.artisticEventGetByDay = (req, res, next)=>{
 			};
 
 			res.status(200).json(response);
+			client.end();
 		});
 	});
 };
@@ -310,6 +330,7 @@ exports.artisticEventPost = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		if(req.body.seminar){
@@ -317,6 +338,7 @@ exports.artisticEventPost = (req, res, next)=>{
 				if (err){
 					const error = new Error('Query error finding seminar');
 					error.status = 500;
+					client.end();
 					return next(error);
 				}
 				client.query('INSERT INTO artistic_events (name, fact_sheet, day, abstract, seminar_id, type)' +
@@ -324,11 +346,13 @@ exports.artisticEventPost = (req, res, next)=>{
 					if (err){
 						const error = new Error('Query error');
 						error.status = 500;
+						client.end();
 						return next(error);
 					}
 					res.status(201).json({
 						message: 'event added'
 					});
+					client.end();
 				});
 			});
 		}
@@ -338,11 +362,13 @@ exports.artisticEventPost = (req, res, next)=>{
 				if (err){
 					const error = new Error('Query error');
 					error.status = 500;
+					client.end();
 					return next(error);
 				}
 				res.status(201).json({
 					message: 'event added'
 				});
+				client.end();
 			});
 		}
 	});
@@ -356,6 +382,7 @@ exports.artisticEventDelete = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		const id = req.params.artisticEventId;
@@ -363,11 +390,13 @@ exports.artisticEventDelete = (req, res, next)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			res.status(205).json({
 				message: 'event deleted'
 			});
+			client.end();
 			
 		});
 	});

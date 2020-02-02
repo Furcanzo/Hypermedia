@@ -9,6 +9,7 @@ exports.artistGetByID = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		const id = req.params.artistId;
@@ -16,6 +17,7 @@ exports.artistGetByID = (req, res, next)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			client.query('SELECT A.name AS event_name, P.events_id AS events_id \n' +
@@ -26,6 +28,7 @@ exports.artistGetByID = (req, res, next)=>{
 				if (err){
 					const error = new Error('Query error');
 					error.status = 500;
+					client.end();
 					return next(error);
 				}
 				const response = {
@@ -53,6 +56,7 @@ exports.artistGetByID = (req, res, next)=>{
 					}) 
 				};
 				res.status(200).json(response);
+				client.end();
 			});
 		});
 	});
@@ -66,6 +70,7 @@ exports.artistPost = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 
@@ -74,11 +79,13 @@ exports.artistPost = (req, res, next)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 401;
+				client.end();
 				return next(error);
 			}
 			res.status(201).json({
 				message: 'artist added'
 			});
+			client.end();
 		});
 	});
 };
@@ -91,6 +98,7 @@ exports.artistDelete = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		const id = req.params.artistId;
@@ -98,12 +106,13 @@ exports.artistDelete = (req, res, next)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			res.status(205).json({
 				message: 'artist deleted'
 			});
-
+			client.end();
 		});
 	});
 };

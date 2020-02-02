@@ -9,18 +9,21 @@ exports.performerGetAll = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		client.query('SELECT * FROM artists', (err, resultA)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			client.query('SELECT * FROM companies', (err, resultC)=>{
 				if (err){
 					const error = new Error('Query error');
 					error.status = 500;
+					client.end();
 					return next(error);
 				}
 				const response = {
@@ -57,6 +60,7 @@ exports.performerGetAll = (req, res, next)=>{
 				};
 
 				res.status(200).json(response);
+				client.end();
 			});
 		});
 	});

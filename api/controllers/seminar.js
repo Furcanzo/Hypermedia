@@ -9,6 +9,7 @@ exports.seminarGetByID = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		const id = req.params.seminarId;
@@ -16,12 +17,14 @@ exports.seminarGetByID = (req, res, next)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			client.query('SELECT id, name FROM artistic_events WHERE seminar_id = ' + id, (err, resultA)=>{
 				if (err){
 					const error = new Error('Query error');
 					error.status = 500;
+					client.end();
 					return next(error);
 				}
 				const response = {
@@ -48,6 +51,7 @@ exports.seminarGetByID = (req, res, next)=>{
 					}) 
 				};
 				res.status(200).json(response);
+				client.end();
 			});
 		});
 	});
@@ -61,6 +65,7 @@ exports.seminarGetByDay = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		const date = req.params.date;
@@ -68,6 +73,7 @@ exports.seminarGetByDay = (req, res, next)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			const response = {
@@ -90,6 +96,7 @@ exports.seminarGetByDay = (req, res, next)=>{
 			};
 
 			res.status(200).json(response);
+			client.end();
 		});
 	});
 };
@@ -102,6 +109,7 @@ exports.seminarPost = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 
@@ -110,11 +118,13 @@ exports.seminarPost = (req, res, next)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 401;
+				client.end();
 				return next(error);
 			}
 			res.status(201).json({
 				message: 'seminar added'
 			});
+			client.end();
 		});
 	});
 };
@@ -127,6 +137,7 @@ exports.seminarDelete = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		const id = req.params.seminarId;
@@ -134,11 +145,13 @@ exports.seminarDelete = (req, res, next)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			res.status(205).json({
 				message: 'seminar deleted'
 			});
+			client.end();
 
 		});
 	});

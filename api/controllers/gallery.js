@@ -9,6 +9,7 @@ exports.getPreview = (req, res, next)=>{
         if (err){
             const error = new Error('Cannot connect to DataBase');
             error.status = 500;
+            client.end();
             return next(error);
         }
         const id = req.params.id;
@@ -31,14 +32,17 @@ exports.getPreview = (req, res, next)=>{
             if (err){
                 const error = new Error('Query error');
                 error.status = 500;
+                client.end();
                 return next(error);
             }
             if(result.rows[0] === undefined) {
                 const error = new Error('Photo not found');
                 error.status = 404;
+                client.end();
                 return next(error);
             }else {
                 res.sendFile(result.rows[0].photo, {root: __dirname + '/../../uploads'});
+                client.end();
             }
         });
     });
@@ -52,6 +56,7 @@ exports.getRequestList = (req, res, next)=>{
         if (err){
             const error = new Error('Cannot connect to DataBase');
             error.status = 500;
+            client.end();
             return next(error);
         }
         const id = req.params.id;
@@ -74,6 +79,7 @@ exports.getRequestList = (req, res, next)=>{
             if (err){
                 const error = new Error('Query error');
                 error.status = 500;
+                client.end();
                 return next(error);
             }
 
@@ -90,6 +96,7 @@ exports.getRequestList = (req, res, next)=>{
                 })
             };
             res.status(200).json(response);
+            client.end();
         });
     });
 };
@@ -102,6 +109,7 @@ exports.getById = (req, res, next)=>{
         if (err){
             const error = new Error('Cannot connect to DataBase');
             error.status = 500;
+            client.end();
             return next(error);
         }
         const id = req.params.id;
@@ -109,14 +117,17 @@ exports.getById = (req, res, next)=>{
             if (err){
                 const error = new Error('Query error');
                 error.status = 500;
+                client.end();
                 return next(error);
             }
             if(result.rows[0] === undefined) {
                 const error = new Error('Photo not found');
                 error.status = 404;
+                client.end();
                 return next(error);
             }else {
                 res.sendFile(result.rows[0].photo, {root: __dirname + '/../../uploads'});
+                client.end();
             }
         });
     });
@@ -130,6 +141,7 @@ exports.patch = (req, res, next)=>{
         if (err){
             const error = new Error('Cannot connect to DataBase');
             error.status = 500;
+            client.end();
             return next(error);
         }
         const id = req.params.id;
@@ -152,11 +164,13 @@ exports.patch = (req, res, next)=>{
             if (err){
                 const error = new Error('Query error');
                 error.status = 500;
+                client.end();
                 return next(error);
             }
             res.status(201).json({
                 message: 'Photo added'
             });
+            client.end();
         });
     });
 };

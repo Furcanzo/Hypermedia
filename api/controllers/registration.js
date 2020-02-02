@@ -9,12 +9,14 @@ exports.registrationGetAll = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		client.query('SELECT * FROM registrations', (err, result)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			res.status(200).json({
@@ -29,6 +31,7 @@ exports.registrationGetAll = (req, res, next)=>{
 					}
 				})
 			});
+			client.end();
 			
 		});
 	});
@@ -42,12 +45,14 @@ exports.registrationPost = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		client.query('INSERT INTO registrations (artistic_events_id, user_web_id) VALUES ('+req.body.artistic_events_id+','+req.userData.id+' )', (err, result)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			res.status(201).json({
@@ -66,12 +71,14 @@ exports.registrationGetYours = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		client.query('SELECT R.artistic_events_id, R.id, AE.name FROM registrations R JOIN artistic_events AE ON R.artistic_events_id= AE.id WHERE user_web_id = '+ req.userData.id, (err, result)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			res.status(200).json({
@@ -99,6 +106,7 @@ exports.registrationDeleteById = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		const id = req.params.registrationId;
@@ -106,6 +114,7 @@ exports.registrationDeleteById = (req, res, next)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			res.status(200).json({

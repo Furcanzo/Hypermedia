@@ -9,6 +9,7 @@ exports.companyGetByID = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 			const id = req.params.companyId;
@@ -16,6 +17,7 @@ exports.companyGetByID = (req, res, next)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			client.query('SELECT A.name AS event_name, P.events_id AS events_id \n' +
@@ -26,6 +28,7 @@ exports.companyGetByID = (req, res, next)=>{
 				if (err){
 					const error = new Error('Query error');
 					error.status = 500;
+					client.end();
 					return next(error);
 				}
 				const response = {
@@ -51,6 +54,7 @@ exports.companyGetByID = (req, res, next)=>{
 					})
 				};
 				res.status(200).json(response);
+				client.end();
 			});
 		});
 	});
@@ -64,6 +68,7 @@ exports.companyPost = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 
@@ -72,11 +77,13 @@ exports.companyPost = (req, res, next)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 401;
+				client.end();
 				return next(error);
 			}
 			res.status(201).json({
 				message: 'companies added'
 			});
+			client.end();
 		});
 	});
 };
@@ -89,6 +96,7 @@ exports.companyDelete = (req, res, next)=>{
 		if (err){
 			const error = new Error('Cannot connect to DataBase');
 			error.status = 500;
+			client.end();
 			return next(error);
 		}
 		const id = req.params.companyId;
@@ -96,11 +104,13 @@ exports.companyDelete = (req, res, next)=>{
 			if (err){
 				const error = new Error('Query error');
 				error.status = 500;
+				client.end();
 				return next(error);
 			}
 			res.status(205).json({
 				message: 'company deleted'
 			});
+			client.end();
 
 		});
 	});
