@@ -50,6 +50,12 @@ app.use('/assets/:type/:file', (req, res, next)=> {
 	}
 );
 
+//pages
+app.use('/pages/:file', (req, res, next)=> {
+		res.sendFile(req.params.file, {root: __dirname + '/Resto/FrontEnd/pages'});
+	}
+);
+
 //index.html
 app.use('/', (req, res, next)=>{
 	if (req.url === '/') {
