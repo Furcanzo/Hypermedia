@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<!--Bootstrap import-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--Bootstrap import end-->
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../assets/css\single_performer.css">
+<link rel="stylesheet" type="text/css" href="../assets/css\pages_style.css">
+<link id="favicon" rel="icon">
+<title id="page_title">Performer</title>
+</head>
+
+<body onload="single_page(), login_nav()">
+ <!-- Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home<span class="sr-only">(current)</span></a></li>
+          <li class="nav-item"><a class="nav-link" id="art_ev" href="./artistic_events_page.html">Artistic Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="./performers_page.html">Performers</a></li>
+          <li class="nav-item"><a class="nav-link" href="./contact_us_page.html">Contact us</a></li>
+        </ul>
+        <ul class="nav pull-right">
+              <li class="nav-item"><a class="nav-link" id="signin_nav" href="./login_page.html">Sign In</a></li>
+              <li class="nav-item"><span class="nav-link" id="email_nav"></span></li>
+              <li class="nav-item"><a class="nav-link" id="logout_nav" onclick="logout()" href="../index.html">Logout</a></li>
+        </ul>
+
+        <a class= "shopping_cart" id="shopping_cart" href="./shopping_cart_page.html" title="Your tickets"><i class="fa fa-ticket" aria-hidden="true"></i></a>
+      </div>
+  </nav>
+  <!-- Page-->
+    <div id="page" class="clearfix">
+      <div class="upper_part clearfix">
+        <input class="previous" id="previous" action="action" onclick="window.history.go(-1); return false;" type="submit" value="&#129144; Go back" />
+      </div>
+      <div class="details">
+        <div class="name"><h1 id="name"></h1></div>
+      </div>
+      <div class="item_part clearfix">
+        <div id="gallery" class="gallery">
+          <h1 class="gallery_title">Photo Gallery</h1>
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators" id="carousel-indicators">
+            </ol>
+            <div class="carousel-inner" id="carousel-inner">
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+        <div class="item_info clearfix">
+          <div class="details"><p id="details"></p></div>
+          <div class="current_affiliation"><p id="current_affiliation"></p></div>
+          <div class="main_achievements"><p id="main_achievements"></p></div>
+        </div>
+      </div>
+      <div class="events_list clearfix">
+        <div class="clearfix" id="events_title"><h1 id="events">Performer's events</h1></div>
+      </div>
+    </div>
+<footer>
+  <div class="footer_license">
+    <p class="footer_license_text"> &copy All rights reserved by Matteo Baragioli, Roberto Buratti, Paolo Capra</p>
+  </div>
+  <div class="footer_info">
+    <a class="footer_info_link" href=".\artistic_events_page.html"> Artistic Events </a>
+    <p class="footer_separator"> | </p>
+    <a class="footer_info_link" href=".\performers_page.html"> Performers </a>
+    <p class="footer_separator"> | </p>
+    <a class="footer_info_link" href=".\contact_us_page.html"> Contact us </a>
+  </div>
+</footer>
+
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
+<script type='text/javascript' src='../assets\js\single_performer.js'></script>
+<script type='text/javascript' src='..\assets\js\login.js'></script>
+<script type='text/javascript' src="..\assets/js/images.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+</body>
+</html>
