@@ -43,7 +43,7 @@ function signin() {
 	        var myArr = JSON.parse(this.responseText);
 	        sessionStorage.setItem("login_email",email);
 	        sessionStorage.setItem("token",myArr.token);
-	        window.location = "../index.html";
+	        window.history.go(-1);
 	    }else if(this.readyState == 4 && this.status == 401)
 	    document.getElementById("error_message").innerHTML="Email address or password incorrect";
 	};
