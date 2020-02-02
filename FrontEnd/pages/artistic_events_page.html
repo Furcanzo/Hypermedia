@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<!--Bootstrap import-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--Bootstrap import end-->
+
+
+<link rel="stylesheet" type="text/css" href="../assets/css/artistic_events_page.css">
+<link rel="stylesheet" type="text/css" href="../assets/css/pages_style.css">
+<link id="favicon" rel="icon">
+<title>Artistic Events</title>
+</head>
+
+<body onload="active(), login_nav()">
+  <!-- Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="../">Home<span class="sr-only">(current)</span></a></li>
+          <li class="nav-item"><a class="nav-link nav-current" href=".\artistic_events_page.html">Artistic Events</a></li>
+          <li class="nav-item"><a class="nav-link" href=".\performers_page.html">Performers</a></li>
+          <li class="nav-item"><a class="nav-link" href=".\contact_us_page.html">Contact us</a></li>
+        </ul>
+        <ul class="nav pull-right">
+              <li class="nav-item"><a class="nav-link" id="signin_nav" href="./login_page.html">Sign In</a></li>
+              <li class="nav-item"><span class="nav-link" id="email_nav"></span></li>
+              <li class="nav-item"><a class="nav-link" id="logout_nav" onclick="logout(),window.location.reload();">Logout</a></li>
+        </ul>
+
+        <a class= "shopping_cart" id="shopping_cart" href="shopping_cart_page.html" title="Your tickets"><i class="fa fa-ticket" aria-hidden="true"></i></a>
+      </div>
+    </nav>
+     <!-- Page-->
+    <div id="page">
+      <div class="content_part clearfix">
+        <h1 class="events_titles"> Artistic Events </h1>
+        
+        <div class="dropdown">
+          <div id="type_button"></div>
+          <ul class="event_types clearfix">
+            <li onclick="refresh('all')" class="type active" id="all">All</li>
+            <li onclick="refresh('music')" class="type" id="music">Music Events</li>
+            <li onclick="refresh('theater')" class="type" id="theater">Theater Events</li>
+            <li onclick="refresh('opera')" class="type" id="opera">Opera Events</li>
+            <li onclick="refresh('dance')" class="type" id="dance">Dance Events</li>
+            <li onclick="refresh('seminar')" class="type" id="seminar">Seminars</li>
+          </ul>
+        </div>
+        <div id="container1" class="clearfix">
+          <div id="artistic_events">
+            <h1 class="titles"> Events </h1>
+            <p id="no_events"> No events </p>
+          </div>
+          <div class="dropdown1" id="n_pages">
+            <div id="page_button"></div>
+            <ul class="clearfix" id="page_list"></ul>
+          </div>
+        </div>
+        <div id="container2" class="clearfix">
+          <div id="seminar_events">
+            <h1 class="titles"> Seminars </h1>
+          </div>
+          <div class="dropdown2" id="n_pages_seminars">
+            <div id="page_s_button"></div>
+            <ul class="clearfix" id="page_s_list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>  
+  <footer>
+    <div class="footer_license">
+      <p class="footer_license_text"> &copy; All rights reserved by Matteo Baragioli, Roberto Buratti, Paolo Capra</p>
+    </div>
+    <div class="footer_info">
+      <a class="footer_info_link" href=".\artistic_events_page.html"> Artistic Events </a>
+      <p class="footer_separator"> | </p>
+      <a class="footer_info_link" href=".\performers_page.html"> Performers </a>
+      <p class="footer_separator"> | </p>
+      <a class="footer_info_link" href=".\contact_us_page.html"> Contact us </a>
+    </div>
+  </footer>
+
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
+<script type='text/javascript' src='..\assets\js\artistic_events.js'></script>
+<script type='text/javascript' src='..\assets\js\login.js'></script>
+<script type='text/javascript' src="..\assets/js/images.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+</html>
