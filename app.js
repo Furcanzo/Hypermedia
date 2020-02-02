@@ -39,6 +39,18 @@ app.use('/seminar', seminarRoutes);
 app.use('/user', userRoutes);
 app.use('/photos', galleryRoutes);
 
+//assets
+/*
+type =
+css,
+js
+ */
+app.use('/assets/:type/:file', (req, res, next)=> {
+	res.sendFile(req.params.file, {root: __dirname + '/Resto/FrontEnd/assets/'+req.params.type});
+	}
+);
+
+//index.html
 app.use('/', (req, res, next)=>{
 	if (req.url === '/') {
 		res.sendFile('index.html', {root: __dirname + '/Resto/FrontEnd'});
