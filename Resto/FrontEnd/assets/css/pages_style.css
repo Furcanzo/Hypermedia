@@ -71,6 +71,9 @@ body{
 	display: none;
 	color: #ffd700!important;
 }
+#logout_nav:hover{
+	cursor: pointer;
+}
 .shopping_cart{
 	font-size: 150%;
 	opacity: 0.8;

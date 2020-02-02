@@ -1,5 +1,4 @@
 var number=3;
-var no_events=0;
 var xmlhttp = new XMLHttpRequest();
 var url_string = window.location.href;
 var url = new URL(url_string);
@@ -17,7 +16,8 @@ xmlhttp.onreadystatechange = function() {
         }
         else{
         	document.getElementById("n_pages").style.display="none";
-        	no_events=1;
+        	document.getElementById("no_events").style.display="block";
+        	document.getElementById("no_events").style.opacity=0;
         }
 
     }
@@ -25,7 +25,6 @@ xmlhttp.onreadystatechange = function() {
 
 xmlhttp.open("GET",request_url, true);
 xmlhttp.send();
-
 
 var xmlhttp = new XMLHttpRequest();
 var url_string = window.location.href;
@@ -41,7 +40,8 @@ xmlhttp.onreadystatechange = function() {
         document.getElementsByClassName("titles")[1].style.display="block";
         if(myArr.count!=null&&myArr.count!=undefined&&myArr.count!=0){
 	    	listSeminars(myArr);
-	    	no_events=0;
+        }else{
+        	document.getElementById("no_events").style.opacity=1;
         }
     }
 };
@@ -258,6 +258,7 @@ function listEvents(jsonData,all){
 
 
 function listSeminars(jsonData){
+	document.getElementById("no_events").style.display="none";
 	document.getElementById("container2").style.display="block";
 	var n_events=jsonData.count;
 	var n_pages = Math.ceil(n_events/number);
@@ -458,7 +459,3 @@ function pagesFunS(a,b){
 	displayEvents(a,b);
 	pageListS();
 }
-
-
-if(no_events==1){
-	document.getElementById("no_events").style.display="block";}

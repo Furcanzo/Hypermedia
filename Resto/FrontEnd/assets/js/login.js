@@ -67,4 +67,5 @@ function login_nav(){
 function logout(){
 	sessionStorage.setItem("login_email",undefined);
 	sessionStorage.setItem("token",undefined);
+	
 }

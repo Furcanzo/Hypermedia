@@ -85,7 +85,6 @@ function listSeminars(myArr,i, eventObject){
   for(var j=0; j<myArr.countS;j++){
     if(myArr.daysS[j].date!=null){
       var date_s = myArr.daysS[j].date;
-      console.log(date_s);
       var year_s = date_s.charAt(0)+date_s.charAt(1)+date_s.charAt(2)+date_s.charAt(3);
       var month_num_s = date_s.charAt(5)+date_s.charAt(6);
       var month_s;
@@ -131,7 +130,6 @@ function listSeminars(myArr,i, eventObject){
       event_url_s["url"]="./pages/day_page.html?y="+year_s+"&m="+month_num_s+"&d="+d_s;
       eventObject[date_s]=event_url_s;
       if(j==myArr.countS-1){
-        console.log(eventObject);
         localStorage.setItem('eventObject', JSON.stringify(eventObject));
 
       }
