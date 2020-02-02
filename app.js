@@ -29,6 +29,10 @@ app.use((req, res, next)=>{
 	next();
 });
 
+app.use('/', (req, res, next)=>{
+	res.sendFile('index.html', {root: __dirname + '/Resto/FrontEnd'});
+});
+
 //list of entities
 app.use('/artisticEvent', artisticEventRoutes);
 app.use('/performer', performerRoutes);
