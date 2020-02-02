@@ -4,7 +4,7 @@ function signup() {
 	var password_confirm = document.getElementById("signupcpassword").value;
 	if(password==password_confirm){
 		var xmlhttp = new XMLHttpRequest();
-		var url= "http://localhost:3000/user/signup";
+		var url= localStorage.getItem("server_url")+"user/signup";
 		xmlhttp.open("POST", url, true);
 		xmlhttp.setRequestHeader("Content-type", "application/json");
 		xmlhttp.onreadystatechange = function() {
@@ -35,13 +35,12 @@ function signin() {
 	var email = document.getElementById("email").value;
 	var password = document.getElementById("password").value;
 	var xmlhttp = new XMLHttpRequest();
-	var url= "http://localhost:3000/user/login";
+	var url= localStorage.getItem("server_url")+"user/login";
 	xmlhttp.open("POST", url, true);
 	xmlhttp.setRequestHeader("Content-type", "application/json");
 	xmlhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
 	        var myArr = JSON.parse(this.responseText);
-	        console.log(myArr);
 	        sessionStorage.setItem("login_email",email);
 	        sessionStorage.setItem("token",myArr.token);
 	        window.location = "../index.html";

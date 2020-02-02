@@ -2,7 +2,7 @@ localStorage.setItem("page_to_display",1);
 localStorage.setItem("page_s_to_display",1);
 localStorage.setItem("page_perf_to_display",1);
 localStorage.setItem("page_perf_s_to_display",1);
-var number = 9;
+var number = 3;
 
 function refresh_page(){
 	var url_string = window.location.href;
@@ -14,7 +14,7 @@ function refresh_page(){
 function removeTicket(id){
 	var token = sessionStorage.getItem("token");
 	var xmlhttp = new XMLHttpRequest();
-	var url= "http://localhost:3000/registration/"+id;
+	var url= localStorage.getItem("server_url")+"registration/"+id;
 	xmlhttp.open("DELETE", url, true);
 	xmlhttp.setRequestHeader("authorization","bearer "+token);
 	xmlhttp.onreadystatechange = function() {
@@ -30,18 +30,12 @@ function removeTicket(id){
 function tickets(){
 	var token = sessionStorage.getItem("token");
 	var xmlhttp = new XMLHttpRequest();
-	var url= "http://localhost:3000/registration/";
+	var url= localStorage.getItem("server_url")+"registration/";
 	xmlhttp.open("GET", url, true);
 	xmlhttp.setRequestHeader("authorization","bearer "+token);
 	xmlhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
 	        var myArr = JSON.parse(this.responseText);
-        	if(window.screen.width<=499)
-				number=3
-			else if(window.screen.width<=768&&window.screen.width>=500)
-				number=4;
-			else
-				number=6;
 	        list(myArr);
 	    }
 	};
@@ -85,11 +79,11 @@ function list(jsonData){
 		 	let newLink = document.createElement('a'); //create a a
 		 	let newDivDate = document.createElement('div'); // create a date div
 		 	let newDateSpan = document.createElement('span'); //create a date span
+		 	let newCont=document.createElement('div'); //create a image container
 		 	let newImage = document.createElement('img'); //create an image
 		 	let newInfoDiv = document.createElement('div'); //create an info div
 		 	let newTitleSpan = document.createElement('span'); //create a title span
 		 	let newButton = document.createElement('button'); //create a remove ticket button
-
 		 	container.className="list_elem";
 		 	container.id="list_elem";
 
@@ -115,9 +109,11 @@ function list(jsonData){
 			//span date
 			newDateSpan.className='date';
 			newDateSpan.id='date'+i;
+			//image container
+			newCont.className="img_container";
 			//image
 			newImage.className='box_img';
-			newImage.setAttribute('src','../assets/img/artistic_events.jpg')
+			newImage.id='box_img'+i;
 
 			//info div
 			newInfoDiv.className='event_info';
@@ -137,11 +133,13 @@ function list(jsonData){
 		 	newDiv.appendChild(newLink);
 		 	newLink.appendChild(newDivDate);
 		 	newDivDate.appendChild(newDateSpan);
-		 	newLink.appendChild(newImage);
+		 	newLink.appendChild(newCont);
+		 	newCont.appendChild(newImage);
 		 	newLink.appendChild(newInfoDiv);
 		 	newInfoDiv.appendChild(newTitleSpan);
 		 	container.appendChild(newButton);
 		 	getEventData(jsonData,i);
+		 	getImage(jsonData,i);
 		}
 		if(localStorage.getItem("page_cart_to_display")==undefined||localStorage.getItem("page_cart_to_display")==null)
 			page_to_display=1;
@@ -159,11 +157,8 @@ function pageList(){
 	document.getElementById("page_list").style.display="none";
 }
 function display(num, tot){
-	console.log(num);
-	console.log(tot);
 	for(var j=0;j<tot;j++){
 		var id1='listBox'+j;
-		console.log(id1);
 		var id = document.getElementById(id1);
 		if(document.getElementById(id1).style.display=="block")
 			document.getElementById(id1).style.display="none";
@@ -258,7 +253,6 @@ function getEventData(jsonData,i){
 				}
 				var eventdate=day+" "+month+" "+year;
 			}
-			console.log(myArr.artistic_events[0].id);
 			document.getElementById("box_link"+i).identificator=myArr.artistic_events[0].id;
 			document.getElementById("event_title"+i).textContent=myArr.artistic_events[0].name;
 			document.getElementById("date"+i).textContent=day+" "+month+" "+year;
@@ -267,6 +261,19 @@ function getEventData(jsonData,i){
 				removeTicket(this.getAttribute("number"));
 			};
 		}
+	}
+	xmlhttp1.open("GET", url, true);
+	xmlhttp1.send();
+}
+
+function getImage(jsonData,i){
+	var xmlhttp1 = new XMLHttpRequest();
+	var url=jsonData.registration[i].request.url;
+	xmlhttp1.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	        var myArr = JSON.parse(this.responseText);
+	    	document.getElementById("box_img"+i).setAttribute('src',localStorage.getItem("server_url")+'photos/preview/artisticEvent/'+myArr.artistic_events[0].id);
+	    }     
 	}
 	xmlhttp1.open("GET", url, true);
 	xmlhttp1.send();

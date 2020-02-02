@@ -1,7 +1,7 @@
 localStorage.setItem("page_perf_to_display",1);
 localStorage.setItem("page_perf_s_to_display",1);
 localStorage.setItem("page_cart_to_display",1);
-var number = 9;
+var number = 3;
 function refresh(type){
 	var url_string = window.location.href;
 	var url = new URL(url_string);
@@ -43,12 +43,6 @@ xmlhttp.onreadystatechange = function() {
         else if(type==null||type.localeCompare("all")==0){
         	document.getElementsByClassName("titles")[0].style.display="block";
         	document.getElementsByClassName("titles")[1].style.display="block";
-        	if(window.screen.width<=499)
-				number=3
-			else if(window.screen.width<=768&&window.screen.width>=500)
-				number=4;
-			else
-				number=6;
 	        list(myArr,true);
         }
         else
@@ -91,7 +85,7 @@ document.getElementById("page_s_button").onclick=function(){
 function list(jsonData,all){
 	document.getElementById("container1").style.display="block";
 	var n_events=jsonData.countAE;
-	if(n_events==0){
+	if(n_events==0||n_events==undefined){
 		document.getElementById("n_pages").style.display="none";
 		document.getElementById("no_events").style.display="block";
 	}
@@ -117,6 +111,7 @@ function list(jsonData,all){
 		 	let newLink = document.createElement('a'); //create a a
 		 	let newDivDate = document.createElement('div'); // create a date div
 		 	let newDateSpan = document.createElement('span'); //create a date span
+		 	let newCont=document.createElement('div'); //create a image container
 		 	let newImage = document.createElement('img'); //create an image
 		 	let newInfoDiv = document.createElement('div'); //create an info div
 		 	let newTitleSpan = document.createElement('span'); //create a title span
@@ -201,9 +196,14 @@ function list(jsonData,all){
 			//span date
 			newDateSpan.className='date';
 			newDateSpan.textContent=day+" "+month+" "+year;
+			//image container
+			newCont.className="img_container";
+
+
+
 			//image
 			newImage.className='box_img';
-			newImage.setAttribute('src','../assets/img/artistic_events.jpg')
+			newImage.setAttribute('src',localStorage.getItem("server_url")+'photos/preview/artisticEvent/'+jsonData.artistic_events[i].id);
 
 			//info div
 			newInfoDiv.className='event_info';
@@ -218,7 +218,8 @@ function list(jsonData,all){
 		 	newDiv.appendChild(newLink);
 		 	newLink.appendChild(newDivDate);
 		 	newDivDate.appendChild(newDateSpan);
-		 	newLink.appendChild(newImage);
+		 	newLink.appendChild(newCont);
+		 	newCont.appendChild(newImage);
 		 	newLink.appendChild(newInfoDiv);
 		 	newInfoDiv.appendChild(newTitleSpan);
 
@@ -238,136 +239,146 @@ function list(jsonData,all){
 function listSeminars(jsonData){
 	document.getElementById("container2").style.display="block";
 	var n_events=jsonData.countS;
-	var n_pages = Math.ceil(n_events/number);
-	const pages = document.getElementById('page_s_list');
-	for(k=1;k<=n_pages;k++){
-		let newsLi = document.createElement('li');
-		if(k==1)
-			newsLi.className='num_s page_active_s';
+	if(n_events==0||n_events==undefined){
+		document.getElementById("n_pages").style.display="none";
+		document.getElementById("no_events").style.display="block";
+	}
+	else{
+
+
+		var n_pages = Math.ceil(n_events/number);
+		const pages = document.getElementById('page_s_list');
+		for(k=1;k<=n_pages;k++){
+			let newsLi = document.createElement('li');
+			if(k==1)
+				newsLi.className='num_s page_active_s';
+			else
+				newsLi.className='num_s';
+			newsLi.id="s"+k;
+			newsLi.innerHTML=k;
+			newsLi.setAttribute('onclick', "pagesFunS("+k+","+n_events+")");
+			pages.appendChild(newsLi);
+		}
+		const myList = document.getElementById('seminar_events');
+		for (var i = 0; i < jsonData.seminars.length; i++) {
+		 	let newDiv = document.createElement('div');   //create a div box
+		 	let newLink = document.createElement('a'); //create a a
+		 	let newDivDate = document.createElement('div'); // create a date div
+		 	let newDateSpan = document.createElement('span'); //create a date span
+		 	let newCont=document.createElement('div'); //create a image container
+		 	let newImage = document.createElement('img'); //create an image
+		 	let newInfoDiv = document.createElement('div'); //create an info div
+		 	let newTitleSpan = document.createElement('span'); //create a title span
+
+		 	//div box
+			newDiv.className='title_box clearfix';
+			newDiv.id='seminarBox'+i;
+
+
+			//date div
+			newDivDate.className='event_date';
+
+			//take the data format
+			var date = jsonData.seminars[i].day;
+			var year = date.charAt(0)+date.charAt(1)+date.charAt(2)+date.charAt(3);
+			var month_num = date.charAt(5)+date.charAt(6);
+			var month;
+			switch (month_num) {
+			  case "01":
+			    month = "January";
+			    break;
+			  case "02":
+			    month = "February";
+			    break;
+			  case "03":
+			    month = "March";
+			    break;
+			  case "04":
+			    month = "April";
+			    break;
+			  case "05":
+			    month = "May";
+			    break;
+			  case "06":
+			    month = "June";
+			    break;
+			  case "07":
+			    month = "July";
+			    break;
+			  case "08":
+			    month = "August";
+			    break;
+			  case "09":
+			    month = "September";
+			    break;
+			  case "10":
+			    month = "October";
+			    break;
+			  case "11":
+			    month = "November";
+			    break;
+			  case "12":
+			    month = "December";
+			}
+
+			var day = date.charAt(8)+date.charAt(9);
+			var h = date.charAt(11)+date.charAt(12);
+			var min = date.charAt(14)+date.charAt(15);
+			h_int=parseInt(h);
+			if(h_int>12&&h_int<24){
+				h_int-=12;
+				h="0"+h_int.toString();
+				var event_time=h+":"+min+"PM";
+			}else if(h_int==24){
+				h=0;
+				var event_time="00"+":"+min+"AM";
+			}else{
+				var event_time=h+":"+min+"AM";
+			}
+			var eventdate=day+" "+month+" "+year;
+			//a
+			newLink.className='box_link';
+			newLink.number=i;
+			newLink.identificator=jsonData.seminars[i].id;
+			newLink.onclick=function (){
+				location.href = 'single_event.html?type=seminar&id='+this.identificator;
+			};
+			//span date
+			newDateSpan.className='date';
+			newDateSpan.textContent=day+" "+month+" "+year;
+			//image container
+			newCont.className="img_container";
+			//image
+			newImage.className='box_img';
+			newImage.setAttribute('src',localStorage.getItem("server_url")+'photos/preview/seminar/'+jsonData.seminars[i].id);
+
+			//info div
+			newInfoDiv.className='event_info';
+
+			//title span
+			newTitleSpan.className='event_title';
+			newTitleSpan.textContent=jsonData.seminars[i].title;
+
+
+		 	//document.body.appendChild(newElement);
+		 	myList.appendChild(newDiv);
+		 	newDiv.appendChild(newLink);
+		 	newLink.appendChild(newDivDate);
+		 	newDivDate.appendChild(newDateSpan);
+		 	newLink.appendChild(newCont);
+		 	newCont.appendChild(newImage);
+		 	newLink.appendChild(newInfoDiv);
+		 	newInfoDiv.appendChild(newTitleSpan);
+
+		}
+		if(localStorage.getItem("page_s_to_display")==undefined||localStorage.getItem("page_s_to_display")==null)
+			page_s_to_display=1;
 		else
-			newsLi.className='num_s';
-		newsLi.id="s"+k;
-		newsLi.innerHTML=k;
-		newsLi.setAttribute('onclick', "pagesFunS("+k+","+n_events+")");
-		pages.appendChild(newsLi);
+			page_s_to_display=localStorage.getItem("page_s_to_display");
+		displayEvents(page_s_to_display,n_events);
+		pageListS();
 	}
-	const myList = document.getElementById('seminar_events');
-	for (var i = 0; i < jsonData.seminars.length; i++) {
-	 	let newDiv = document.createElement('div');   //create a div box
-	 	let newLink = document.createElement('a'); //create a a
-	 	let newDivDate = document.createElement('div'); // create a date div
-	 	let newDateSpan = document.createElement('span'); //create a date span
-	 	let newImage = document.createElement('img'); //create an image
-	 	let newInfoDiv = document.createElement('div'); //create an info div
-	 	let newTitleSpan = document.createElement('span'); //create a title span
-
-	 	//div box
-		newDiv.className='title_box clearfix';
-		newDiv.id='seminarBox'+i;
-
-
-		//date div
-		newDivDate.className='event_date';
-
-		//take the data format
-		var date = jsonData.seminars[i].day;
-		var year = date.charAt(0)+date.charAt(1)+date.charAt(2)+date.charAt(3);
-		var month_num = date.charAt(5)+date.charAt(6);
-		var month;
-		switch (month_num) {
-		  case "01":
-		    month = "January";
-		    break;
-		  case "02":
-		    month = "February";
-		    break;
-		  case "03":
-		    month = "March";
-		    break;
-		  case "04":
-		    month = "April";
-		    break;
-		  case "05":
-		    month = "May";
-		    break;
-		  case "06":
-		    month = "June";
-		    break;
-		  case "07":
-		    month = "July";
-		    break;
-		  case "08":
-		    month = "August";
-		    break;
-		  case "09":
-		    month = "September";
-		    break;
-		  case "10":
-		    month = "October";
-		    break;
-		  case "11":
-		    month = "November";
-		    break;
-		  case "12":
-		    month = "December";
-		}
-
-		var day = date.charAt(8)+date.charAt(9);
-		var h = date.charAt(11)+date.charAt(12);
-		var min = date.charAt(14)+date.charAt(15);
-		h_int=parseInt(h);
-		if(h_int>12&&h_int<24){
-			h_int-=12;
-			h="0"+h_int.toString();
-			var event_time=h+":"+min+"PM";
-		}else if(h_int==24){
-			h=0;
-			var event_time="00"+":"+min+"AM";
-		}else{
-			var event_time=h+":"+min+"AM";
-		}
-		var eventdate=day+" "+month+" "+year;
-		//a
-		newLink.className='box_link';
-		newLink.number=i;
-		newLink.identificator=jsonData.seminars[i].id;
-		newLink.onclick=function (){
-			location.href = 'single_event.html?type=seminar&id='+this.identificator;
-		};
-		//span date
-		newDateSpan.className='date';
-		newDateSpan.textContent=day+" "+month+" "+year;
-
-		//image
-		newImage.className='box_img';
-		newImage.setAttribute('src','../assets/img/artistic_events.jpg')
-
-		//info div
-		newInfoDiv.className='event_info';
-
-		//title span
-		newTitleSpan.className='event_title';
-		newTitleSpan.textContent=jsonData.seminars[i].title;
-
-
-	 	//document.body.appendChild(newElement);
-	 	myList.appendChild(newDiv);
-	 	newDiv.appendChild(newLink);
-	 	newLink.appendChild(newDivDate);
-	 	newDivDate.appendChild(newDateSpan);
-	 	newLink.appendChild(newImage);
-	 	newLink.appendChild(newInfoDiv);
-	 	newInfoDiv.appendChild(newTitleSpan);
-
-	}
-	if(localStorage.getItem("page_s_to_display")==undefined||localStorage.getItem("page_s_to_display")==null)
-		page_s_to_display=1;
-	else
-		page_s_to_display=localStorage.getItem("page_s_to_display");
-	displayEvents(page_s_to_display,n_events);
-	pageListS();
 }
-
 
 
 

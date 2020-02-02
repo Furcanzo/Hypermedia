@@ -2,7 +2,7 @@ body{
 	background-color: #a5eaff;
 }
 #page{
-	background-image: url("../../assets/img/background.jpg"); 
+	background-image: url(); 
 	background-repeat: no-repeat;
   	background-attachment: fixed;
 	margin-left:5%;

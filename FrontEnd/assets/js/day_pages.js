@@ -1,4 +1,4 @@
-var number=6;
+var number=3;
 var xmlhttp = new XMLHttpRequest();
 var url_string = window.location.href;
 var url = new URL(url_string);
@@ -6,24 +6,20 @@ var year = url.searchParams.get("y");
 var month_num = url.searchParams.get("m");
 var day = url.searchParams.get("d");
 var request_url = localStorage.getItem("server_url")+"artisticEvent/day/"+year+"-"+month_num+"-"+day;
-console.log(request_url);
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myArr = JSON.parse(this.responseText);
         document.getElementsByClassName("titles")[0].style.display="block";
         document.getElementsByClassName("titles")[1].style.display="block";
         if(myArr.count!=null&&myArr.count!=undefined&&myArr.count!=0){
-		    if(window.screen.width<=499)
-				number=3
-			else if(window.screen.width<=768&&window.screen.width>=500)
-				number=4;
-			else
-				number=6;
 		    listEvents(myArr);
         }
+        else{
+        	document.getElementById("n_pages").style.display="none";
+			document.getElementById("no_events").style.display="block";
+        }
+
     }
-    //else
-    	//alert("Server error");
 };
 
 xmlhttp.open("GET",request_url, true);
@@ -37,7 +33,6 @@ var year = url.searchParams.get("y");
 var month_num = url.searchParams.get("m");
 var day = url.searchParams.get("d");
 var request_url = localStorage.getItem("server_url")+"seminar/day/"+year+"-"+month_num+"-"+day;
-console.log(request_url);
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myArr = JSON.parse(this.responseText);
@@ -46,8 +41,6 @@ xmlhttp.onreadystatechange = function() {
         if(myArr.count!=null&&myArr.count!=undefined&&myArr.count!=0)
 	    	listSeminars(myArr);
     }
-    //else
-    	//alert("Server error");
 };
 
 xmlhttp.open("GET",request_url, true);
@@ -110,6 +103,7 @@ function date(){
 	document.getElementById("m").innerHTML=month+" "+year;
 	document.getElementById("d").innerHTML=day;
 	document.getElementById("date").style.display="block";
+	document.getElementById("page_title").innerHTML="Events on "+day+" " +month+" "+year;
 }
 
 
@@ -141,6 +135,7 @@ function listEvents(jsonData,all){
 	 	let newLink = document.createElement('a'); //create a a
 	 	let newDivDate = document.createElement('div'); // create a date div
 	 	let newDateSpan = document.createElement('span'); //create a date span
+	 	let newCont=document.createElement('div'); //create a image container
 	 	let newImage = document.createElement('img'); //create an image
 	 	let newInfoDiv = document.createElement('div'); //create an info div
 	 	let newTitleSpan = document.createElement('span'); //create a title span
@@ -225,9 +220,11 @@ function listEvents(jsonData,all){
 		//span date
 		newDateSpan.className='date';
 		newDateSpan.textContent=day+" "+month+" "+year;
+		//image container
+		newCont.className="img_container";
 		//image
 		newImage.className='box_img';
-		newImage.setAttribute('src','../assets/img/artistic_events.jpg')
+		newImage.setAttribute('src',localStorage.getItem("server_url")+'photos/preview/artisticEvent/'+jsonData.artistic_events[i].id);
 
 		//info div
 		newInfoDiv.className='event_info';
@@ -242,7 +239,8 @@ function listEvents(jsonData,all){
 	 	newDiv.appendChild(newLink);
 	 	newLink.appendChild(newDivDate);
 	 	newDivDate.appendChild(newDateSpan);
-	 	newLink.appendChild(newImage);
+	 	newLink.appendChild(newCont);
+		newCont.appendChild(newImage);
 	 	newLink.appendChild(newInfoDiv);
 	 	newInfoDiv.appendChild(newTitleSpan);
 
@@ -255,8 +253,10 @@ function listEvents(jsonData,all){
 	pageList();
 }
 
+
 function listSeminars(jsonData){
 	document.getElementById("container2").style.display="block";
+	document.getElementById("no_events").style.display="none";
 	var n_events=jsonData.count;
 	var n_pages = Math.ceil(n_events/number);
 	const pages = document.getElementById('page_s_list');
@@ -277,6 +277,7 @@ function listSeminars(jsonData){
 	 	let newLink = document.createElement('a'); //create a a
 	 	let newDivDate = document.createElement('div'); // create a date div
 	 	let newDateSpan = document.createElement('span'); //create a date span
+	 	let newCont=document.createElement('div'); //create a image container
 	 	let newImage = document.createElement('img'); //create an image
 	 	let newInfoDiv = document.createElement('div'); //create an info div
 	 	let newTitleSpan = document.createElement('span'); //create a title span
@@ -357,10 +358,11 @@ function listSeminars(jsonData){
 		//span date
 		newDateSpan.className='date';
 		newDateSpan.textContent=day+" "+month+" "+year;
-
+		//image container
+		newCont.className="img_container";
 		//image
 		newImage.className='box_img';
-		newImage.setAttribute('src','../assets/img/artistic_events.jpg')
+		newImage.setAttribute('src',localStorage.getItem("server_url")+'photos/preview/seminar/'+jsonData.seminars[i].id);
 
 		//info div
 		newInfoDiv.className='event_info';
@@ -375,7 +377,8 @@ function listSeminars(jsonData){
 	 	newDiv.appendChild(newLink);
 	 	newLink.appendChild(newDivDate);
 	 	newDivDate.appendChild(newDateSpan);
-	 	newLink.appendChild(newImage);
+	 	newLink.appendChild(newCont);
+	 	newCont.appendChild(newImage);
 	 	newLink.appendChild(newInfoDiv);
 	 	newInfoDiv.appendChild(newTitleSpan);
 

@@ -26,6 +26,7 @@ function single_page(){
 
 	function displayEvent(jsonData){
 		var title = jsonData.artistic_events[0].name;
+		document.getElementById("page_title").innerHTML=title;
 		if(jsonData.artistic_events[0].day!=null){
 			var date = jsonData.artistic_events[0].day;
 			var year = date.charAt(0)+date.charAt(1)+date.charAt(2)+date.charAt(3);
@@ -85,11 +86,60 @@ function single_page(){
 			}
 			var eventdate=day+" "+month+" "+year;
 		}
+		//get images
+		var xmlhttp = new XMLHttpRequest();
+		var url = localStorage.getItem("server_url")+"photos/requestList/artisticEvent/"+jsonData.artistic_events[0].id;
+		xmlhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		        var myArr = JSON.parse(this.responseText);
+		        for(var p=0;p<myArr.photos.length;p++){
+		        	let newDivPic = document.createElement("div");
+		        	let newImg = document.createElement("img");
+		        	let newLiImg = document.createElement("li");
+		        	if(p==0){
+		        		newDivPic.className='carousel-item active';
+		        	}else{
+		        		newDivPic.className='carousel-item';
+		        	}
+		        	newImg.className="d-block w-100";
+		        	newImg.alt="Slide "+(i+1);
+		        	newImg.src=myArr.photos[p].request.url;
+		        	newLiImg.dataset.target="#carouselExampleIndicators";
+		        	newLiImg.setAttribute('data-slide-to',p);
+		        	if(p==0){
+		        		newLiImg.class="active";
+		        	}
+		        	document.getElementById("carousel-inner").appendChild(newDivPic);
+		        	newDivPic.appendChild(newImg);
+		        	document.getElementById("carousel-indicators").appendChild(newLiImg);
+		        }
+		    }
+		};
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send();
+
+
+
+		var start=0;
+		for(var c=0; c<jsonData.artistic_events[0].fact_sheet.length;c++){
+			if(jsonData.artistic_events[0].fact_sheet[c]=='\n'||c==jsonData.artistic_events[0].fact_sheet.length-1){
+				var result="";
+				for(j=start;j<c;j++){
+					result=result+jsonData.artistic_events[0].fact_sheet[j];
+				}				
+				start=c+1;
+				let newSpace=document.createElement('br');
+				let newPar=document.createElement('p');
+				newPar.class='fact_sheet_line';
+				newPar.innerHTML=result;
+				document.getElementById('fact_sheet').appendChild(newPar);
+				document.getElementById('fact_sheet').appendChild(newSpace);
+			}
+		}
 		var fact_sheet = jsonData.artistic_events[0].fact_sheet;
 		var abstract = jsonData.artistic_events[0].abstract;
 		document.getElementById('title').innerHTML=title;
 		document.getElementById('date').innerHTML=eventdate+" at "+event_time;
-		document.getElementById('fact_sheet').innerHTML=fact_sheet;
 		document.getElementById('fact_sheet').style.display="block";
 		document.getElementById('abstract').innerHTML=abstract;
 		document.getElementById('abstract').style.display="block";
@@ -136,7 +186,6 @@ function single_page(){
 			newDiv.appendChild(newLink);
 		}
 		var seminar = jsonData.artistic_events[0].seminar;
-		console.log(seminar);
 		let newDiv = document.createElement('div');
 	 	let newLink = document.createElement('a');
 	 	newDiv.className='seminar_name';
@@ -157,6 +206,7 @@ function single_page(){
 	}
 	function displaySeminar(jsonData){
 		var title = jsonData.seminars[0].title;
+		document.getElementById("page_title").innerHTML=title;
 		if(jsonData.seminars[0].day!=null){
 			var date = jsonData.seminars[0].day;
 			var year = date.charAt(0)+date.charAt(1)+date.charAt(2)+date.charAt(3);
@@ -216,11 +266,43 @@ function single_page(){
 			}
 			var eventdate=day+" "+month+" "+year;
 		}
+		//get images
+		var xmlhttp = new XMLHttpRequest();
+		var url = localStorage.getItem("server_url")+"photos/requestList/seminar/"+jsonData.seminars[0].id;
+		xmlhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		        var myArr = JSON.parse(this.responseText);
+		        for(var p=0;p<myArr.photos.length;p++){
+		        	let newDivPic = document.createElement("div");
+		        	let newImg = document.createElement("img");
+		        	let newLiImg = document.createElement("li");
+		        	if(p==0){
+		        		newDivPic.className='carousel-item active';
+		        	}else{
+		        		newDivPic.className='carousel-item';
+		        	}
+		        	newImg.className="d-block w-100";
+		        	newImg.alt="Slide "+(i+1);
+		        	newImg.src=myArr.photos[p].request.url;
+		        	newLiImg.dataset.target="#carouselExampleIndicators";
+		        	newLiImg.setAttribute('data-slide-to',p);
+		        	if(p==0){
+		        		newLiImg.class="active";
+		        	}
+		        	document.getElementById("carousel-inner").appendChild(newDivPic);
+		        	newDivPic.appendChild(newImg);
+		        	document.getElementById("carousel-indicators").appendChild(newLiImg);
+		        }
+		    }
+		};
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send();
 		var location = jsonData.seminars[0].location;
 		document.getElementById('title').innerHTML=title;
 		document.getElementById('date').innerHTML=eventdate+" at "+event_time;
 		document.getElementById('location').innerHTML=location;
 		document.getElementById('location').style.display="block";
+		document.getElementById('location_title').style.display="block";
 		document.getElementsByClassName('item_part')[0].style.opacity='1';
 		document.getElementById("ticket_box").style.display="none";
 		if(jsonData.artisticEventLink.length>0){
@@ -305,7 +387,7 @@ ticket.onclick=function(){
 	var id_request = url.searchParams.get("id");
 	var token = sessionStorage.getItem("token");
 	var xmlhttp = new XMLHttpRequest();
-	var url= "http://localhost:3000/registration";
+	var url= localStorage.getItem("server_url")+"registration";
 	xmlhttp.open("POST", url, true);
 	xmlhttp.setRequestHeader("Content-type", "application/json");
 	xmlhttp.setRequestHeader("authorization","bearer "+token);

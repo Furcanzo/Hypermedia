@@ -4,14 +4,13 @@
 <head>
 <!--Bootstrap import-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--Bootstrap import end-->
-
-<link rel="icon" href="..\assets\img\favicon.ico">
 <link rel="stylesheet" type="text/css" href="../assets/css\contact_us_page.css">
 <link rel="stylesheet" type="text/css" href="..\assets\css\pages_style.css">
-
+<link id="favicon" rel="icon">
+<title>Contact us</title>
 </head>
 
 <body onload="login_nav()">
@@ -26,7 +25,7 @@
           <li class="nav-item"><a class="nav-link" href="../index.html">Home<span class="sr-only">(current)</span></a></li>
           <li class="nav-item"><a class="nav-link" href=".\artistic_events_page.html">Artistic Events</a></li>
           <li class="nav-item"><a class="nav-link" href=".\performers_page.html">Performers</a></li>
-          <li class="nav-item"><a class="nav-link nav-curren" href=".\contact_us_page.html">Contact us</a></li>
+          <li class="nav-item"><a class="nav-link nav-current" href=".\contact_us_page.html">Contact us</a></li>
         </ul>
         <ul class="nav pull-right">
               <li class="nav-item"><a class="nav-link" id="signin_nav" href="./login_page.html">Sign In</a></li>
@@ -39,13 +38,12 @@
     </nav>
      <!-- Page-->
     <div id="page">
-      <div class="info_box clearfix">
-        <div class="back">
+      <div class="info_box">
+        <div class="back clearfix">
           <a href="..\index.html" class="previous">&#129144; Go back to homepage</a>
         </div>
-        <center>
-          <br>
-          <h1> Contact us </h1>
+        <div class="contact_us_content">
+          <h1 class="contact_us"> Contact us </h1>
           <p class="info">For general info or if you need help:</p>
           <p class="information">Tel: 000-000-0000</p>
           <p class="information">Fax: 000-000-0000</p>
@@ -54,8 +52,7 @@
           <p class="information">matteo.baragioli@hypepperony.com</p>
           <p class="information">roberto.buratti@hypepperony.com</p>
           <p class="information">paolo.capra@hypepperony.com</p>
-          <br>
-        </center>
+        </div>
       </div>
     </div>
 
@@ -71,9 +68,10 @@
       <a class="footer_info_link" href="contact_us_page.html"> Contact us </a>
     </div>
   </footer>
+  <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
 <script type='text/javascript' src='../assets\js\contact_us.js'></script>
 <script type='text/javascript' src='..\assets\js\login.js'></script>
-<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
+<script type='text/javascript' src="..\assets/js/images.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
