@@ -29,10 +29,6 @@ app.use((req, res, next)=>{
 	next();
 });
 
-app.use('/', (req, res, next)=>{
-	res.sendFile('index.html', {root: __dirname + '/Resto/FrontEnd'});
-});
-
 //list of entities
 app.use('/artisticEvent', artisticEventRoutes);
 app.use('/performer', performerRoutes);
@@ -43,6 +39,15 @@ app.use('/seminar', seminarRoutes);
 app.use('/user', userRoutes);
 app.use('/photos', galleryRoutes);
 
+app.use('/', (req, res, next)=>{
+	if (req.url === '/') {
+		res.sendFile('index.html', {root: __dirname + '/Resto/FrontEnd'});
+	}
+	else {
+		next();
+	}
+
+});
 
 //Errors handling
 app.use((req, res, next)=>{
