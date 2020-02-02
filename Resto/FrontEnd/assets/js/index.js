@@ -1,4 +1,4 @@
-localStorage.setItem("server_url","http://localhost:3000/");
+localStorage.setItem("server_url","https://https://young-headland-39698.herokuapp.com/");
 localStorage.setItem("page_to_display",1);
 localStorage.setItem("page_s_to_display",1);
 localStorage.setItem("page_perf_to_display",1);
