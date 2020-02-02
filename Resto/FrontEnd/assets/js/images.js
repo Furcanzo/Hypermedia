@@ -1,5 +1,5 @@
 var xmlhttp = new XMLHttpRequest();
-var url = "https://young-headland-39698.herokuapp.com/photos/staticAssets";
+var url = localStorage.getItem("server_url")+"photos/staticAssets";
 console.log(url);
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -21,5 +21,5 @@ xmlhttp.onreadystatechange = function() {
             performer.setAttribute("src", myArr.assets[4].request.url);
     }
 };
-xmlhttp.open("GET", "https://young-headland-39698.herokuapp.com/photos/staticAssets", true);
+xmlhttp.open("GET", url, true);
 xmlhttp.send();
