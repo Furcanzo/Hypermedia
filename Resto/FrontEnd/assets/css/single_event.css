@@ -293,7 +293,7 @@ br{
 		height: 30em!important;
 	}
 }
-@media (max-width: 991px) and (min-width: 501px) {
+@media (max-width: 991px){
 	.previous{
 		margin-top: 4em;
 	}
