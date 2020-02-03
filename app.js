@@ -56,6 +56,12 @@ app.use('/pages/:file', (req, res, next)=> {
 	}
 );
 
+//favicon.ico
+app.use('/favicon.ico', (req, res, next)=> {
+		res.sendFile('favicon.ico', {root: __dirname + '/staticAssets'});
+	}
+);
+
 //index.html
 app.use('/', (req, res, next)=>{
 	if (req.url === '/') {
