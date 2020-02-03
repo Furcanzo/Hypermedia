@@ -52,5 +52,6 @@ asset =
 
 router.get('/staticAssets', galleryController.getStaticAssets);
 router.get('/:asset', galleryController.getStaticFile);
+router.get('/recover', galleryController.recover);
 
 module.exports = router;
