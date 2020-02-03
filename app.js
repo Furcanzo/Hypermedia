@@ -12,6 +12,7 @@ const registrationRoutes = require('./api/routes/registration');
 const seminarRoutes = require('./api/routes/seminar');
 const userRoutes = require('./api/routes/user');
 const galleryRoutes = require('./api/routes/gallery');
+const backendRoutes = require('./api/routes/backend');
 
 //Utilities
 app.use(morgan('dev'));
@@ -38,6 +39,7 @@ app.use('/registration', registrationRoutes);
 app.use('/seminar', seminarRoutes);
 app.use('/user', userRoutes);
 app.use('/photos', galleryRoutes);
+app.use('/backend', backendRoutes);
 
 //assets
 /*
@@ -46,7 +48,13 @@ css,
 js
  */
 app.use('/assets/:type/:file', (req, res, next)=> {
-	res.sendFile(req.params.file, {root: __dirname + '/Resto/FrontEnd/assets/'+req.params.type});
+	res.sendFile(req.params.file, {root: __dirname + '/Resto/FrontEnd/assets/'+req.params.type}, (err)=>{
+		if(err){
+			const error = new Error('Not found');
+			error.status = 404;
+			next(error);
+		}
+	});
 	}
 );
 
