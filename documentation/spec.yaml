@@ -1,0 +1,232 @@
+openapi: 3.0.1
+info:
+  title: Hypepperony
+  description: An api for the hypepperoni festival website
+  version: '0.1'
+servers:
+  - url: 'https://young-headland-39698.herokuapp.com'
+paths:
+  /artisticEvent/{artisticEventId}:
+    parameters:
+      - name: "artisticEventId"
+        in: "path"
+        description: "id of the artistic event"
+        required: true
+        schema:
+          type: integer
+          example: 101
+    get:
+      description: get object by id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: 'https://young-headland-39698.herokuapp.com'
+    servers:
+      - url: 'https://young-headland-39698.herokuapp.com'
+  /artisticEvent/day/{day}:
+    parameters:
+        - name: "day"
+          in: "path"
+          description: "day of the artistic event"
+          required: true
+          schema:
+            type: string
+            example: "2020-02-14"
+    get:
+      description: Get the events in the day
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: 'https://young-headland-39698.herokuapp.com'
+    servers:
+      - url: 'https://young-headland-39698.herokuapp.com'
+  /artist/{id}:
+    parameters:
+        - name: "id"
+          in: "path"
+          description: "id of the artist"
+          required: true
+          schema:
+            type: integer
+            example: 5
+    get:
+      description: get the artist by id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: 'https://young-headland-39698.herokuapp.com'
+    servers:
+      - url: 'https://young-headland-39698.herokuapp.com'
+  /company/{id}:
+    parameters:
+      - name: "id"
+        in: "path"
+        description: "id of the company"
+        required: true
+        schema:
+          type: integer
+          example: 4
+    get:
+      description: get company by id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: 'https://young-headland-39698.herokuapp.com'
+    servers:
+      - url: 'https://young-headland-39698.herokuapp.com'
+  /performer:
+    get:
+      description: get all the performers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: 'https://young-headland-39698.herokuapp.com'
+    servers:
+      - url: 'https://young-headland-39698.herokuapp.com'
+  /user/login:
+    post:
+      description: Log in as user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                eMail:
+                  type: string
+            examples:
+              '0':
+                value: |-
+                  {
+                      "eMail": "mail@mail.mail",
+                      "password": "albania12"
+                  }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: 'https://young-headland-39698.herokuapp.com'
+    servers:
+      - url: 'https://young-headland-39698.herokuapp.com'
+  /artisticEvent/type/{type}:
+    parameters:
+      - name: "type"
+        in: "path"
+        description: "type of the event"
+        required: true
+        schema:
+          type: string
+          example: "music"
+    get:
+      description: Get all the events of a given type
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: 'https://young-headland-39698.herokuapp.com'
+    servers:
+      - url: 'https://young-headland-39698.herokuapp.com'
+  /artisticEvent/calendar:
+    get:
+      description: Get all the days that have at least an event
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: 'https://young-headland-39698.herokuapp.com'
+    servers:
+      - url: 'https://young-headland-39698.herokuapp.com'
+  /artisticEvent/:
+    get:
+      description: get all the events
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: 'https://young-headland-39698.herokuapp.com'
+    servers:
+      - url: 'https://young-headland-39698.herokuapp.com'
+  /user/signup:
+    post:
+      description: create a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                eMail:
+                  type: string
+            examples:
+              '0':
+                value: |-
+                  {
+                      "eMail": "mail@mail.mail",
+                      "password": "mail"
+                  }
+      responses:
+        '201':
+          description: user created
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: 'https://young-headland-39698.herokuapp.com'
+    servers:
+      - url: 'https://young-headland-39698.herokuapp.com'
