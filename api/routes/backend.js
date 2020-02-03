@@ -12,6 +12,16 @@ const inputfile = __dirname + '/../../documentation/spec.yaml',
 router.use('/swaggerui', swaggerUi.serve);
 router.get('/swaggerui', swaggerUi.setup(obj));
 
+router.get('/ER',(req, res, next)=>{
+    res.sendFile('0001.jpg', {root: __dirname + '/../../Resto/Design'}, (err)=>{
+        if(err){
+            const error = new Error('ER Not found');
+            error.status = 404;
+            next(error);
+        }
+    });
+} );
+
 router.get('/:file', (req, res, next)=>{
     res.sendFile(req.params.file, {root: __dirname + '/../../documentation'}, (err)=>{
         if(err){
