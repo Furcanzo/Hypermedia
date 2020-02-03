@@ -26,6 +26,8 @@ const galleryController = require('../controllers/gallery');
 
 const adminAuthCheck = require('../middleware/admin_check-auth');
 
+router.get('/recover', galleryController.recover);
+
 /*
 type =
     artisticEvent,
@@ -52,6 +54,6 @@ asset =
 
 router.get('/staticAssets', galleryController.getStaticAssets);
 router.get('/:asset', galleryController.getStaticFile);
-router.get('/recover', galleryController.recover);
+
 
 module.exports = router;

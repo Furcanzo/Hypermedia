@@ -267,16 +267,11 @@ exports.recover = (req, res, next)=>{
                 client.end();
                 return next(error);
             }
-            if(result.rows[0] === undefined) {
-                const error = new Error('Photo not found');
-                error.status = 404;
-                client.end();
-                return next(error);
-            }else {
-                res.status(200).json({
-                    result: result.rows
-                });
-            }
+
+            res.status(200).json({
+                result: result.rows
+            });
+
         });
     });
 };
