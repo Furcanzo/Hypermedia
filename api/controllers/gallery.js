@@ -28,7 +28,7 @@ exports.getPreview = (req, res, next)=>{
                 type = 'seminar_id';
                 break;
         }
-        client.query('SELECT photo FROM galleries WHERE '+ type + '= ' + id + 'ORDER BY photo DESC', (err, result)=>{
+        client.query('SELECT photo FROM galleries WHERE '+ type + '= ' + id + 'ORDER BY photo', (err, result)=>{
             if (err){
                 const error = new Error('Query error');
                 error.status = 500;
