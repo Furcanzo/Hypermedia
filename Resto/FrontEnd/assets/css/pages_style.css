@@ -164,8 +164,16 @@ footer{
 		font-size: 0;
 	}
 	#ci-hero-11 .widget-wrap , #ci-hero-12 .widget-wrap {
-
 		background-attachment: initial;
-
+	}
+	.navbar{
+		width: 100%;
+		margin-left:0;
+		margin-right:0;
+	}
+	#page{
+		margin-left:0;
+		margin-right:0;
+		width: 100%;
 	}
 }
