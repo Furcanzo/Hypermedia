@@ -172,8 +172,8 @@ footer{
 		margin-right:0;
 	}
 	#page{
-		margin-left:0;
-		margin-right:0;
-		width: 100%;
+		margin-left:2%;
+		margin-right:2%;
+		width: 96%;
 	}
 }
