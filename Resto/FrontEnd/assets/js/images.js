@@ -1,6 +1,5 @@
 var xmlhttp = new XMLHttpRequest();
 var url = localStorage.getItem("server_url")+"photos/staticAssets";
-console.log(url);
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myArr = JSON.parse(this.responseText);
