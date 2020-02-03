@@ -26,8 +26,6 @@ const galleryController = require('../controllers/gallery');
 
 const adminAuthCheck = require('../middleware/admin_check-auth');
 
-router.get('/recover', galleryController.recover);
-
 /*
 type =
     artisticEvent,

@@ -248,30 +248,3 @@ exports.getStaticFile = (req, res, next)=>{
     }
     res.sendFile(file, {root: __dirname + '/../../staticAssets'});
 };
-
-exports.recover = (req, res, next)=>{
-    const client = new Client({
-        connectionString: connect.connectString
-    });
-    client.connect((err, client)=>{
-        if (err){
-            const error = new Error('Cannot connect to DataBase');
-            error.status = 500;
-            client.end();
-            return next(error);
-        }
-        client.query('SELECT * FROM galleries ', (err, result)=>{
-            if (err){
-                const error = new Error('Query error');
-                error.status = 500;
-                client.end();
-                return next(error);
-            }
-
-            res.status(200).json({
-                result: result.rows
-            });
-
-        });
-    });
-};
