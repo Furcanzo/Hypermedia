@@ -54,13 +54,13 @@ paths:
       - url: 'https://young-headland-39698.herokuapp.com'
   /artist/{id}:
     parameters:
-        - name: "id"
-          in: "path"
-          description: "id of the artist"
-          required: true
-          schema:
-            type: integer
-            example: 5
+      - name: "id"
+        in: "path"
+        description: "id of the artist"
+        required: true
+        schema:
+          type: integer
+          example: 5
     get:
       description: get the artist by id
       responses:
