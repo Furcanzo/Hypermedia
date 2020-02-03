@@ -60,7 +60,13 @@ app.use('/assets/:type/:file', (req, res, next)=> {
 
 //pages
 app.use('/pages/:file', (req, res, next)=> {
-		res.sendFile(req.params.file, {root: __dirname + '/Resto/FrontEnd/pages'});
+		res.sendFile(req.params.file, {root: __dirname + '/Resto/FrontEnd/pages'}, (err)=>{
+			if(err){
+				const error = new Error('Not found');
+				error.status = 404;
+				next(error);
+			}
+		});
 	}
 );
 
